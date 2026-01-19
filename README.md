@@ -1,6 +1,6 @@
 # be25-1st-5team-project
 <p align="center">
-  <img src="[<img width="2816" height="1536" alt="핏터디(로고)" src="https://github.com/user-attachments/assets/76f170f9-df4a-4538-8edb-35e952e2dea2" />]" width="200" alt="Project Logo" />
+  <img src="logo.png" width="400" alt="Project Logo" />
 </p>
 
 <h1 align="center">📛 <strong>[FIT-STUDY]</strong></h1>
