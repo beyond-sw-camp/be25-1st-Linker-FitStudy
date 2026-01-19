@@ -14,7 +14,7 @@
 ---
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=soft&color=auto&height=80&section=footer&text=[프로젝트이름]&fontSize=40&fontColor=ffffff&animation=fadeIn" />
+  <img src="https://capsule-render.vercel.app/api?type=soft&color=auto&height=80&section=footer&text=[FIT-STUDY]&fontSize=40&fontColor=ffffff&animation=fadeIn" />
 </p>
 
 ## 📚 Table of Contents
