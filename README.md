@@ -1351,7 +1351,7 @@ VALUES (2, 4, 'MEMBER', 'PENDING');
 
 </details>
 
-### 👤 5. 윤정윤
+### 👤 5. 유저 스터디 현황 조회 및 북마크 관리
 <details>
 <summary>5-1. 유저 스터디 참여 현황 조회</summary>
 
