@@ -1868,13 +1868,13 @@ DELIMITER ;
 <summary>2. 장애 복구 테스트</summary>
 
 - 기본 데이터베이스 상태
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/default_status.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/default_status.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/default_status.png?raw=true)
 
 - Master DB 장애 이후 Slave DB를 Mater로 승격
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/replica_to_master.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/replica_to_master.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/replica_to_master.png?raw=true)
 
 - Mater 서버 복구 후 DB role 정상화
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/return_master.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/return_master.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/return_master.png?raw=true)
 </details>
 
 <details>
