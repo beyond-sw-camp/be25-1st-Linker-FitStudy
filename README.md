@@ -826,17 +826,47 @@ VALUES
 
 </details>
 
-### 👤 4. 박재하
+### 👑 4. 스터디 관리 및 리더 기능 (Management) 
 <details>
-<summary>1-1. 회원가입</summary>
+<summary>4-1. 회원가입</summary>
 
 ```sql
+-- ===================== LEADER_001 =====================
+-- 모집상태는 RECRUITING이 기본값
+-- 팀장ID는 스터디 공고 만든 유저의 ID / 모집공고를 올리면 자동으로 리더 ID로 승격
 
+DELIMITER $$
+CREATE OR replace TRIGGER `trg_auto_leader_if_make_post`
+AFTER INSERT ON `study_post`
+FOR EACH ROW
+BEGIN
+    -- 공고가 생성되면, 작성자(leader_id)를 멤버 테이블에 자동 추가
+    INSERT INTO study_member (post_id, user_id, role, status, joined_at)
+    VALUES (NEW.post_id, NEW.leader_id, 'LEADER', 'ACCEPTED', NOW());
+END$$
+DELIMITER ;
+
+INSERT INTO study_post 
+(leader_id, title, content, max_participants, way, region_id, min_reliability, post_status, start_at, predict_finish_at) 
+VALUES 
+(
+    5, -- 팀장ID
+    '제목을 입력하세요... title', -- 제목
+    '상세내용 입력하세요... ', -- 상세 내용
+    4, -- 모집인원
+    'ONLINE', -- 진행 방식 (ONLINE/OFFLINE/BOTH)
+    NULL, -- 온라인이라 지역 없음
+    4, -- 최소신뢰지수제한 (4점 이상)
+    'RECRUITING', -- 모집 상태
+    '2026-03-01 00:00:00', -- 스터디 시작일시
+    '2026-06-01 00:00:00'  -- 예상 종료일시
+);
 ```
+-공고 생성
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_001/%EA%B3%B5%EA%B3%A0%20%EC%83%9D%EC%84%B1%20%ED%99%95%EC%9D%B8.png?raw=true)
 
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
 
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_001/%EA%B3%B5%EA%B3%A0%20%EC%83%9D%EC%84%B1%EC%8B%9C%20%EB%A6%AC%EB%8D%94%20%EC%95%84%EC%9D%B4%EB%94%94%EB%A1%9C%20%EC%9E%90%EB%8F%99%20%EC%8A%B9%EA%B2%A9%20%ED%99%95%EC%9D%B8.png?raw=true)
 
 
 </details>
