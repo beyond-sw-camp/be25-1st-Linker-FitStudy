@@ -24,8 +24,7 @@
 - [🔧 주요 기능](#-주요-기능)
 - [📅 프로젝트 진행 일정 (WBS)](#-프로젝트-진행-일정-wbs)
 - [📋 요구사항 명세](#-요구사항-명세)
-  - [✅ 기능 요구사항](#-기능-요구사항)
-  - [🚫 비기능 요구사항](#-비기능-요구사항)
+  - [✅ 요구사항](#-요구사항-)
 - [🧩 데이터베이스 설계](#-데이터베이스-설계)
   - [📌 ERD 구조도](#erd-구조도)
   - [📋 테이블 명세](#-테이블-명세)
@@ -34,8 +33,8 @@
 - [🧪 샘플 데이터 (DML)](#-샘플-데이터-dml)
 - [🧠 쿼리 실행 결과 (Code)](#-구현-결과-code)
 - [🔧 수정 및 향후 개선사항](#-수정-및-향후-개선사항)
-- [💻테스트)
-- [🎓 회고록]
+- [💻테스트](#테스트)
+- [🎓 회고록](#회고록)
 
 ---
 
@@ -127,7 +126,7 @@
 
 <img src="./image/WBS.jpg" width="1000" alt="Project Logo" />
 
-- [📂 일정표 자세히 보기 (링크)](https://docs.google.com/spreadsheets/d/1rJIUxV4W8rlf0Q7GiBcsVRYuY1JH6BskKCvWa9DXjHo/edit?gid=0#gid=0)
+- [📂 일정표 자세히 보기 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=153074575#gid=153074575)
 
 ---
 
@@ -137,10 +136,9 @@
 <p align="center">
   <img src="./image/requirements.jpg" width="175%" alt="요구사항 정의서 미리보기" />
 </p>
+- [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
 
-- [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)
-
-### ✅ 기능 요구사항
+### ✅ 요구사항
 - 사용자 계정 생성, 로그인, 정보 수정 및 탈퇴 (블랙리스트 대조 포함)
 - 태그 기반 맞춤 스터디 추천 및 필터링 검색 (지역/온오프라인)
 - 스터디 모집글 작성, 수정, 삭제 및 상태 관리
@@ -150,14 +148,6 @@
 - 실시간 팀 채팅 및 이전 대화 내역 조회
 - 관심 스터디 북마크 등록, 해제 및 목록 조회
 - 관리자 신고 처리, 유저 제재(3회 누적 시 탈퇴) 및 통계 대시보드 열람
-
-### 🚫 비기능 요구사항(===========수정해야함=================)
-- 인증 토큰 기반 세션 관리 및 권한 제어 (JWT, OAuth2 등)
-- 실시간 채팅을 위한 저지연(Low Latency) 통신 지원 (WebSocket 등)
-- 개인정보(비밀번호, 연락처) 암호화 저장 및 보안 표준 준수
-- 대용량 검색 및 추천 쿼리 성능 최적화 (인덱싱 전략)
-- 데이터 무결성 보장 (평가 점수 및 상태 변경 트랜잭션 처리)
-- 다양한 디바이스(PC/Mobile)를 지원하는 반응형 UI 제공
 
 ---
 
@@ -784,9 +774,10 @@ VALUES
 ```sql
 
 ```
-
+평가 전
 ![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
-
+<br>
+평가 후 신뢰 점수 변동
 ![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
 
 
@@ -829,6 +820,14 @@ END$$
 
 DELIMITER ;
 ```
+
+- 신뢰 점수 반영 전
+  
+![image](김다솜/Peer_review_001/Reliability.png)
+<br>
+- 신뢰 점수 반영 후 결과
+  
+![image](김다솜/Peer_review_001/Reliability_2.png)
 </details> 
 
 
@@ -854,6 +853,7 @@ BEGIN
 END$$
 
 ```
+![image](김다솜/Peer_review_001/Error.png)
 </details>
 
 <details>
@@ -864,6 +864,8 @@ SELECT COUNT(*) AS count_member
 FROM chat_read_status
 WHERE message_id = 1 AND is_read = 1;
 ```
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EA%B9%80%EB%8B%A4%EC%86%9C/COMM_001/Read_People.png)
+
 </details>
 <details>
 <summary> 2-6. 채팅 전체 조회 </summary>
@@ -900,19 +902,137 @@ END$$
 DELIMITER ;
 
 ```
+![image](김다솜/COMM_001/Read_Chat_Result.png)
 </details>
 
-### 👤 3. 이애은
+### 🔍 3. 스터디 탐색 및 조회 (Discovery)
 <details>
-<summary>1-1. 회원가입</summary>
+<summary>3-1. 맞춤 스터디 공고 조회</summary>
 
 ```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE recommendStudies(
+	IN userId int
+) 
+BEGIN
+	SELECT sp.title AS 제목, 
+			 sp.max_participants AS 모집인원,
+			 sp.view_count AS 조회수, 
+			 sp.way AS 진행방식, 
+			 city AS 지역, 
+			 CONCAT(LEAST(
+            100,
+            CAST(
+                (IFNULL(COUNT(ut.tag_id), 0) / COUNT(pt.tag_id)) * 100
+                AS INT
+            )), '%') AS 태그일치율
+	FROM study_post sp
+	JOIN post_tag pt ON sp.post_id = pt.post_id
+	LEFT JOIN user_tech_stack ut ON pt.tag_id = ut.tag_id AND ut.user_id = userId
+	JOIN common_region cr ON sp.region_id = cr.region_id
+	WHERE post_status = 'RECRUITING'
+	GROUP BY sp.post_id
+	ORDER BY IFNULL(COUNT(ut.tag_id), 0) / COUNT(pt.tag_id) DESC;
+END$$
+DELIMITER ;
 
+CALL recommendStudies(1); -- 유저 아이디 입력
 ```
 
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_010/recommendStudies.png?raw=true)
 
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+</details>
+
+<details>
+<summary>3-2. 스터디 검색</summary>
+
+```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE searchStudies(
+    IN p_keyword VARCHAR(255),
+    IN p_tag_name VARCHAR(100),
+    IN p_city VARCHAR(10),
+    IN p_way VARCHAR(10),
+    IN p_status VARCHAR(15)
+)
+BEGIN
+    SELECT
+        sp.title AS 제목,
+        sp.max_participants AS 모집인원,
+        sp.view_count AS 조회수,
+        sp.way AS 진행방식,
+        cr.city AS 지역,
+        sp.created_at AS 게시일
+    FROM study_post sp
+    JOIN common_region cr
+        ON sp.region_id = cr.region_id
+    WHERE
+        (p_keyword IS NULL
+         OR (sp.title LIKE CONCAT('%', p_keyword, '%')
+            OR sp.content LIKE CONCAT('%', p_keyword, '%')))
+        AND (
+            p_tag_name IS NULL
+            OR EXISTS (
+                SELECT tag_name
+                FROM post_tag pt
+                JOIN common_tag ct ON pt.tag_id = ct.tag_id
+                WHERE pt.post_id = sp.post_id
+                  AND pt.tag_id = p_tag_id
+                  AND ct.tag_name = p_tag_name
+            )
+        )
+        AND (p_city IS NULL OR cr.city = p_city)
+        AND (p_way IS NULL OR sp.way = p_way)
+        AND (p_status IS NULL OR sp.post_status = p_status)
+
+    ORDER BY sp.created_at DESC;
+END$$
+
+DELIMITER ;
+
+CALL searchStudies('백엔드','Java','서울','BOTH','RECRUITING');
+
+CALL searchStudies(NULL,NULL,'서울',NULL,'RECRUITING');
+```
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies.png?raw=true)</br>
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies%20result.png?raw=true)
+
+
+</details>
+
+<details>
+<summary>3-3. 회원가입</summary>
+
+```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE viewStudy(
+	IN p_post_id int
+) 
+BEGIN
+	UPDATE study_post 
+	SET view_count = view_count+1 
+	WHERE post_id = p_post_id;
+
+	SELECT title AS 제목, 
+			 content AS 상세내용, 
+			 created_at AS 게시일, 
+			 CONCAT(COUNT(member_id), ' / ', max_participants) AS 모집현황,
+			 leader_id AS 팀장아이디, 
+			 view_count AS 조회수
+	FROM study_post sp
+	JOIN study_member sm ON sm.post_id = sp.post_id
+	WHERE sp.post_id = p_post_id AND sm.`status` = 'ACCEPTED'
+	;
+END$$
+DELIMITER ;
+
+CALL viewStudy(1); -- 게시물 아이디 입력
+```
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_012/viewStudy.png?raw=true)
 
 
 </details>
