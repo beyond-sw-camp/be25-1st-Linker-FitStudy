@@ -20,7 +20,7 @@
 
 - [👥 팀원 소개](#-팀원-소개)
 - [🌟 프로젝트 개요](#-프로젝트-개요)
-- [💡 개발 배경 및 필요성](#-개발-배경-및-필요성)
+- [💡 배경 및 필요성](#-배경-및-필요성)
 - [🔧 주요 기능](#-주요-기능)
 - [📅 프로젝트 진행 일정 (WBS)](#-프로젝트-진행-일정-wbs)
 - [📋 요구사항 명세](#-요구사항-명세)
@@ -57,7 +57,7 @@
 | <a href="https://github.com/penep0"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="[깃허브 주소]"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/horolo1234"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> |
 ---
 
-## 💡 **배경**
+## 💡 **배경 및 필요성**
 
 - 최근 협업 환경이 비대면 및 온·오프라인 혼합형으로 변화함에 따라 팀 기반 학습 비중이 급격히 증가하면서 스터디 빈도가 어느 때보다 높아짐.
 - 그러나 여전히 많은 사람들은 단순히 '아는 사람' 위주로 팀을 구성, 성향과 역량을 알지 못한 채, 무작위로 팀원을 만나면서 큰 피로감과 갈등을 유발함.
