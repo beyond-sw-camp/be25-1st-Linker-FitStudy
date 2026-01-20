@@ -770,7 +770,7 @@ VALUES
 ---
 
 ## 🧠 쿼리 실행 결과 (Code)
-### 👤 1. 이용호
+### 👤 1. 회원 기초 및 인증
 <details>
 <summary>1-1. 회원가입</summary>
 
