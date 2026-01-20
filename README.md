@@ -2,7 +2,7 @@
   <img src="./image/logo.png" width="400" alt="Project Logo" />
 </p>
 
-<h1 align="center">📛 <strong>[FIT-STUDY]</strong></h1>
+**<h1 align="center"> <strong>FIT-STUDY</strong></h1>**
 <p align="center"><em>나에게 딱 맞는(Fit) 스터디</em></p>
 
 <p align="center">
@@ -900,7 +900,7 @@ DELIMITER ;
 
 
 <details>
-<summary>2-4. 스터디 미완수 시 평가 불가능 </summary>
+<summary>2-4. [트리거] 스터디 미완수 시 평가 불가능 </summary>
 
 ``` sql
 DELIMITER $$
