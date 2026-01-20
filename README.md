@@ -909,7 +909,7 @@ DELIMITER ;
 ![image](김다솜/COMM_001/Read_Chat_Result.png)
 </details>
 
-### 🔍 3. 스터디 탐색 및 조회 (Discovery)
+### 🔍 3. 스터디 탐색 및 조회
 <details>
 <summary>3-1. 맞춤 스터디 공고 조회</summary>
 
@@ -1041,7 +1041,7 @@ CALL viewStudy(1); -- 게시물 아이디 입력
 
 </details>
 
-### 👑 4. 스터디 관리 및 리더 기능 (Management) 
+### 👑 4. 스터디 관리 및 리더 기능
 <details>
 <summary>4-1. 스터디 모집글 작성</summary>
 
