@@ -775,15 +775,60 @@ VALUES
 <summary>1-1. 회원가입</summary>
 
 ```sql
+DELIMITER $$
 
+CREATE OR REPLACE PROCEDURE signupUser(
+    IN p_pw         VARCHAR(255),
+    IN p_name       VARCHAR(50),
+    IN p_gender     CHAR(1),
+    IN p_birth_date DATE,
+    IN p_phone      VARCHAR(20),
+    IN p_nickname   VARCHAR(50),
+    IN p_email      VARCHAR(100),
+    IN p_city_name  VARCHAR(50)
+)
+BEGIN
+    DECLARE p_region_id INT;
+    
+    SELECT region_id
+    INTO p_region_id
+    FROM common_region
+    WHERE city = p_city_name;
+
+    IF TIMESTAMPDIFF(YEAR, p_birth_date, CURDATE()) < 19 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = '만 19세 미만은 가입할 수 없습니다.';
+    END IF;
+
+    -- UNIQUE 체크
+    IF EXISTS (SELECT 1 FROM `user` WHERE email = p_email) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '이미 존재하는 이메일입니다.';
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM `user` WHERE nickname = p_nickname) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = '이미 존재하는 닉네임입니다.';
+    END IF;
+
+
+    INSERT INTO `user` (pw, `name`, gender, birth_date,phone, nickname, email, region_id)
+    VALUES (p_pw, p_name, p_gender, p_birth_date, p_phone, p_nickname, p_email, p_region_id);
+
+END$$
+
+DELIMITER ;
+
+CALL signupUser('pw1234', '김세비', 'F', '2000-01-01', '010-9823-8572', 'sebi', 'sebi@gmail.com', '광주');
+
+SELECT * FROM user WHERE email = 'sebi@gmail.com';
 ```
 평가 전
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+![image](이용호/USER_01/signupUser.png)
 <br>
-평가 후 신뢰 점수 변동
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
 
+- 오류
+![image](이용호/USER_01/Error.png)
 
+<br>
 </details>
 
 ### 🕵️ 2. 상호작용 및 커뮤니케이션
