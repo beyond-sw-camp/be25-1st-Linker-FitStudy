@@ -1615,9 +1615,9 @@ CALL deleteBookmarkProc(1, 5);
   
 > <details>
 > <summary>3-1. [트리거] 신고 승인 시 패널티 증가</summary>
-> ```sql
 > <br>
->	
+>
+> ```sql	
 >   DELIMITER //
 > 
 > CREATE TRIGGER trg_increase_penalty_on_report_accept
@@ -1641,8 +1641,9 @@ CALL deleteBookmarkProc(1, 5);
 
 > <details> 
 > <summary>3-2. [트리거] 3회 누적 시 강제 탈퇴 및 블랙리스트</summary>
-> ```sql
 > <br>
+>
+> ```sql
 >
 >   DELIMITER //
 > 
@@ -1670,9 +1671,9 @@ CALL deleteBookmarkProc(1, 5);
 
 > <details> 
 > <summary>3-3. [트리거] 블랙리스트에 등록된 이메일로 가입 시도 시 차단</summary>
-> ```sql
 > <br>
 >
+> ```sql
 >   DELIMITER //
 > 
 > CREATE TRIGGER trg_prevent_signup
@@ -1692,6 +1693,8 @@ CALL deleteBookmarkProc(1, 5);
 
 <details>
 <summary>4. 시스템 통계 대시보드 (신규 공고 수, 신규 참여 수)</summary>
+<br>
+	
 ```sql
 DELIMITER //
 
