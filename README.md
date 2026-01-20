@@ -902,17 +902,134 @@ DELIMITER ;
 ```
 </details>
 
-### 👤 3. 이애은
+### 🔍 3. 스터디 탐색 및 조회 (Discovery)
 <details>
-<summary>1-1. 회원가입</summary>
+<summary>3-1. 맞춤 스터디 공고 조회</summary>
 
 ```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE recommendStudies(
+	IN userId int
+) 
+BEGIN
+	SELECT sp.title AS 제목, 
+			 sp.max_participants AS 모집인원,
+			 sp.view_count AS 조회수, 
+			 sp.way AS 진행방식, 
+			 city AS 지역, 
+			 CONCAT(LEAST(
+            100,
+            CAST(
+                (IFNULL(COUNT(ut.tag_id), 0) / COUNT(pt.tag_id)) * 100
+                AS INT
+            )), '%') AS 태그일치율
+	FROM study_post sp
+	JOIN post_tag pt ON sp.post_id = pt.post_id
+	LEFT JOIN user_tech_stack ut ON pt.tag_id = ut.tag_id AND ut.user_id = userId
+	JOIN common_region cr ON sp.region_id = cr.region_id
+	WHERE post_status = 'RECRUITING'
+	GROUP BY sp.post_id
+	ORDER BY IFNULL(COUNT(ut.tag_id), 0) / COUNT(pt.tag_id) DESC;
+END$$
+DELIMITER ;
 
+CALL recommendStudies(1); -- 유저 아이디 입력
 ```
 
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_010/recommendStudies.png?raw=true)
 
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+</details>
+
+<details>
+<summary>3-2. 스터디 검색</summary>
+
+```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE searchStudies(
+    IN p_keyword VARCHAR(255),
+    IN p_tag_name VARCHAR(100),
+    IN p_city VARCHAR(10),
+    IN p_way VARCHAR(10),
+    IN p_status VARCHAR(15)
+)
+BEGIN
+    SELECT
+        sp.title AS 제목,
+        sp.max_participants AS 모집인원,
+        sp.view_count AS 조회수,
+        sp.way AS 진행방식,
+        cr.city AS 지역,
+        sp.created_at AS 게시일
+    FROM study_post sp
+    JOIN common_region cr
+        ON sp.region_id = cr.region_id
+    WHERE
+        (p_keyword IS NULL
+         OR (sp.title LIKE CONCAT('%', p_keyword, '%')
+            OR sp.content LIKE CONCAT('%', p_keyword, '%')))
+        AND (
+            p_tag_name IS NULL
+            OR EXISTS (
+                SELECT tag_name
+                FROM post_tag pt
+                JOIN common_tag ct ON pt.tag_id = ct.tag_id
+                WHERE pt.post_id = sp.post_id
+                  AND pt.tag_id = p_tag_id
+                  AND ct.tag_name = p_tag_name
+            )
+        )
+        AND (p_city IS NULL OR cr.city = p_city)
+        AND (p_way IS NULL OR sp.way = p_way)
+        AND (p_status IS NULL OR sp.post_status = p_status)
+
+    ORDER BY sp.created_at DESC;
+END$$
+
+DELIMITER ;
+
+CALL searchStudies('백엔드','Java','서울','BOTH','RECRUITING');
+
+CALL searchStudies(NULL,NULL,'서울',NULL,'RECRUITING');
+```
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies.png?raw=true)</br>
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies%20result.png?raw=true)
+
+
+</details>
+
+<details>
+<summary>3-3. 회원가입</summary>
+
+```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE viewStudy(
+	IN p_post_id int
+) 
+BEGIN
+	UPDATE study_post 
+	SET view_count = view_count+1 
+	WHERE post_id = p_post_id;
+
+	SELECT title AS 제목, 
+			 content AS 상세내용, 
+			 created_at AS 게시일, 
+			 CONCAT(COUNT(member_id), ' / ', max_participants) AS 모집현황,
+			 leader_id AS 팀장아이디, 
+			 view_count AS 조회수
+	FROM study_post sp
+	JOIN study_member sm ON sm.post_id = sp.post_id
+	WHERE sp.post_id = p_post_id AND sm.`status` = 'ACCEPTED'
+	;
+END$$
+DELIMITER ;
+
+CALL viewStudy(1); -- 게시물 아이디 입력
+```
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_012/viewStudy.png?raw=true)
 
 
 </details>
