@@ -823,10 +823,8 @@ SELECT * FROM user WHERE email = 'sebi@gmail.com';
 ```
 ![image](이용호/USER_01/signupUser.png)
 
-- 오류<br>
-![image](이용호/USER_01/Error.png)
-
 <br>
+![image](이용호/USER_01/Error.png)
 </details>
 
 ### 🕵️ 2. 상호작용 및 커뮤니케이션
