@@ -1069,8 +1069,8 @@ VALUES
     '상세내용 입력하세요... ', -- 상세 내용
     4, -- 모집인원
     'ONLINE', -- 진행 방식 (ONLINE/OFFLINE/BOTH)
-    NULL, -- 온라인이라 지역 없음
-    4, -- 최소신뢰지수제한 (4점 이상)
+    NULL, -- 온라인이면 지역 NULL
+    4, -- 최소신뢰점수 (4점 이상)
     'RECRUITING', -- 모집 상태
     '2026-03-01 00:00:00', -- 스터디 시작일시
     '2026-06-01 00:00:00'  -- 예상 종료일시
@@ -1101,11 +1101,11 @@ BEGIN
     -- 공고 상태가 'CANCELED'로 변경된 경우에만 로직 수행
     IF NEW.post_status = 'CANCELED' AND OLD.post_status != 'CANCELED' THEN
     
-        -- (1) 북마크: 삭제 처리
+        -- 1. 북마크 삭제 처리
         DELETE FROM bookmark 
         WHERE post_id = NEW.post_id;
 
-        -- (2) 스터디 멤버: 상태를 'CANCELED'로 변경
+        -- 2. 스터디 멤버 상태를 CANCELED로 변경
         -- 참여(ACCEPTED) 이거나 대기(PENDING)인 멤버만 처리
         UPDATE study_member
         SET status = 'CANCELED',
@@ -1118,7 +1118,7 @@ END$$
 
 DELIMITER ;
 
--- 트리거가 감지하고 북마크 삭제 + 멤버 상태 변경을 수행함
+-- 트리거가 감지하고 북마크 삭제 + 멤버 상태 CANCELED 변경
 UPDATE study_post 
 SET post_status = 'CANCELED' 
 WHERE post_id = 1;
@@ -1140,21 +1140,22 @@ WHERE post_id = 1;
 
 ```sql
 -- ===================== LEADER_003 =====================
--- 제목이나 내용을 수정. 반드시 leader_id만 수정가능해야함
+-- 제목이나 내용을 수정.
+-- 반드시 leader_id만 수정가능
 DELIMITER $$
 CREATE PROCEDURE `update_study_post`(
-    IN p_post_id      INT,
+    IN p_post_id INT,
     IN p_requester_id INT,
-    IN p_title        VARCHAR(255),
-    IN p_content      TEXT,
-    IN p_way          VARCHAR(10)
+    IN p_title VARCHAR(255),
+    IN p_content TEXT,
+    IN p_way VARCHAR(10)
 )
 BEGIN
-    -- 1. 업데이트 수행 (리더더 체크 포함)
+    -- 1. 업데이트 수행 (리더 체크 포함)
     UPDATE study_post
-    SET title      = p_title,
-        content    = p_content,
-        way        = p_way,
+    SET title = p_title,
+        content = p_content,
+        way = p_way,
         updated_at = NOW()
     WHERE post_id = p_post_id 
       AND leader_id = p_requester_id;
@@ -1208,7 +1209,7 @@ BEGIN
         FROM study_post
         WHERE post_id = NEW.post_id;
 
-        -- 2. 팀장 이름으로 1점 자동 평가(에러 방지를 위해 IGNORE)
+        -- 2. 팀장 이름으로 1점 자동 평가 (에러 방지를 위해 IGNORE)
         INSERT IGNORE INTO peer_review 
         (post_id, reviewer_id, reviewee_id, contribution_score, communication_score, time_compliance_score, diligence_score)
         VALUES 
@@ -1245,13 +1246,13 @@ DELIMITER ;
 
 ```sql
 -- ===================== LEADER_005, LEADER_006 =====================
--- pending인 사람들 리더가 ACCEPTED나 REJECTED로 바꿈
+-- 리더가 PENDING인 사람 ACCEPTED나 REJECTED로 바꿈
 DELIMITER $$
 CREATE PROCEDURE `update_member_status`(
-    IN p_post_id      INT,          -- 스터디 공고 ID
-    IN p_requester_id INT,          -- 요청자 ID (리더인지 검증할 ID)
-    IN p_target_id    INT,          -- 상태를 변경할 대상 회원 ID
-    IN p_new_status   VARCHAR(20)   -- 변경할 상태 (REJECTED, ACCEPTED 등)
+    IN p_post_id INT,		-- 스터디 공고 ID
+    IN p_requester_id INT,		-- 요청자 ID (리더인지 검증할 ID)
+    IN p_target_id INT,		-- 상태를 변경할 대상 회원 ID
+    IN p_new_status VARCHAR(20)		-- 변경할 상태 (REJECTED, ACCEPTED 등)
 )
 BEGIN
     -- 1. 업데이트 수행 (리더 권한 체크 포함)
@@ -1260,15 +1261,15 @@ BEGIN
     SET sm.status = p_new_status,
         sm.status_updated_at = NOW()
     WHERE sm.post_id = p_post_id
-      AND sm.user_id = p_target_id   -- 변경 대상
-      AND sp.leader_id = p_requester_id; -- 요청자가 리더여야만 실행
+      AND sm.user_id = p_target_id		-- 변경 대상
+      AND sp.leader_id = p_requester_id;		-- 요청자가 리더여야만 실행
 
     -- 2. 결과 반환
     SELECT post_id, 
-		 user_id, 
-		 `role`, 
-		 `status`,
-		 status_updated_at
+		   user_id, 
+		   `role`, 
+		   `status`,
+		   status_updated_at
 	 FROM study_member
 	 WHERE post_id = p_post_id;
 END$$
@@ -1312,9 +1313,9 @@ CALL sp_update_member_status(2, 5, 6, 'REJECTED');
 
 DELIMITER $$
 CREATE PROCEDURE `change_withdraw_leader`(
-    IN p_post_id INT,        -- 공고 ID
-    IN withdraw_leader_id INT, -- 탈퇴하는 팀장 ID
-    IN next_leader_id INT  -- 후계자 ID (없으면 NULL)
+    IN p_post_id INT,		-- 공고 ID
+    IN withdraw_leader_id INT,		-- 탈퇴하는 팀장 ID
+    IN next_leader_id INT		-- 후계자 ID (없으면 NULL)
 )
 BEGIN
     DECLARE is_leader INT;
@@ -1399,14 +1400,16 @@ CREATE TRIGGER trg_auto_increase_count
 AFTER UPDATE ON study_post
 FOR EACH ROW
 BEGIN
+	-- 변경 전 값이 COMPLETED가 아니고 변경된 값이 COMPLETED인 경우
+	-- 즉 COMPLETED로 상태가 바뀌는 경우
     IF NEW.post_status = 'COMPLETED' AND OLD.post_status != 'COMPLETED' THEN
         UPDATE user
         SET completed_studies = completed_studies + 1
         WHERE user_id IN (
             SELECT user_id 
-            FROM study_member 
-            WHERE post_id = NEW.post_id AND status = 'ACCEPTED'
-        );
+            FROM study_member
+			-- ACCEPTED인 사람만 횟수증가
+            WHERE post_id = NEW.post_id AND status = 'ACCEPTED');
     END IF;
 END$$
 DELIMITER ;
