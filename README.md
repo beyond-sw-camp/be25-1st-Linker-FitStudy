@@ -523,5 +523,24 @@ ALTER TABLE `user_tech_stack`
 
 ```
 </details>
+
+### 🧪 샘플 데이터 삽입 (DML)
+<details>
+  <summary>1. 기초 데이터 (지역 및 태그)</summary>  
+
+```sql
+-- 1. 공통 지역 코드 (주요 도시 등록)
+INSERT INTO `common_region` (`city`) VALUES
+('서울'), ('경기'), ('인천'), ('부산'), ('대구'), ('대전'), ('광주'), ('제주'), ('온라인');
+```
 </details>
 
+<details>
+  <summary>1. 기초 데이터 (지역 및 태그)</summary>  
+
+```sql
+-- 1. 공통 지역 코드 (주요 도시 등록)
+INSERT INTO `common_region` (`city`) VALUES
+('서울'), ('경기'), ('인천'), ('부산'), ('대구'), ('대전'), ('광주'), ('제주'), ('온라인');
+```
+</details>
