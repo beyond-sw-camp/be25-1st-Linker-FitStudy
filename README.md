@@ -781,7 +781,7 @@ VALUES
 ---
 
 ## 🧠 프로시저 실행 결과
-### 👤 1. 사용자 및 반려동물 관리
+### 👤 1. 이다윗
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -795,7 +795,8 @@ VALUES
 
 
 </details>
-### 👤 2. 사용자 및 반려동물 관리
+
+### 👤 2. 김다솜
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -809,7 +810,8 @@ VALUES
 
 
 </details>
-### 👤 3. 사용자 및 반려동물 관리
+
+### 👤 3. 이애은은
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -823,7 +825,8 @@ VALUES
 
 
 </details>
-### 👤 4. 사용자 및 반려동물 관리
+
+### 👤 4. 윤정윤
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -837,7 +840,8 @@ VALUES
 
 
 </details>
-### 👤 5. 사용자 및 반려동물 관리
+
+### 👤 5. 이용호
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -851,7 +855,8 @@ VALUES
 
 
 </details>
-### 👤 6. 사용자 및 반려동물 관리
+
+### 👤 6. 박재하
 <details>
 <summary>1-1. 회원가입</summary>
 
