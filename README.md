@@ -164,7 +164,7 @@
 <img src="./image/ERD.png" width="1000" alt="ERD image" />
 
 ### 📋 테이블 명세
-- [📂 테이블 명세서 링크]([링크])
+- [📂 테이블 명세서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
 
 ### 📌 아키텍처
 ![아키텍처 이미지]([아키텍처 이미지 URL])
