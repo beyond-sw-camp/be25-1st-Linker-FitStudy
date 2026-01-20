@@ -170,9 +170,6 @@
 ### 📋 테이블 명세
 - [📂 테이블 명세서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
 
-### 📌 아키텍처
-<img src="./image/Web_App_Reference_Architecture_1.webp" width="1000" alt="ERD image" />
-
 ### 📌 Schema DDL
 <details>
 <summary>DDL</summary>  
@@ -1101,6 +1098,32 @@ CALL deleteBookmarkProc(1, 5);
 
 </details>
 
+### 📌 아키텍처
+<img src="./image/Web_App_Reference_Architecture_1.webp" width="1000" alt="ERD image" />
+
+
+### 🔍 테스트
+<details>
+<summary>1. 쿼리 분기 테스트</summary>
+
+</details>
+
+<details>
+<summary>2. 장애 복구 테스트</summary>
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/default_status.png?raw=true)
+- 기본 데이터베이스 상태
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/replica_to_master.png?raw=true)
+- Master DB 장애 이후 Slave DB를 Mater로 승격
+
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/return_master.png?raw=true)
+- Mater 서버 복구 후 DB role 정상화
+</details>
+
+<details>
+<summary>3. 쿼리 튜닝 테스트</summary>
+
+</details>
 ## 회고록
 
 ---
