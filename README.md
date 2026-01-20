@@ -132,7 +132,7 @@
 
 ### 🧾 요구사항 정의서
 <p align="center">
-  <img src="./image/requirements.jpg" width="175%" alt="요구사항 정의서 미리보기" />
+  <img src="./image/Requirements.jpg" width="175%" alt="요구사항 정의서 미리보기" />
 </p>
 
 - [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)
@@ -529,18 +529,60 @@ ALTER TABLE `user_tech_stack`
   <summary>1. 기초 데이터 (지역 및 태그)</summary>  
 
 ```sql
--- 1. 공통 지역 코드 (주요 도시 등록)
+-- 1. 공통 지역 코드 (9개)
 INSERT INTO `common_region` (`city`) VALUES
 ('서울'), ('경기'), ('인천'), ('부산'), ('대구'), ('대전'), ('광주'), ('제주'), ('온라인');
+```
+
+```sql
+-- 2. 공통 태그 (15개: 백엔드, 프론트엔드, 모바일, DB, 기타)
+INSERT INTO `common_tag` (`tag_name`, `tag_type`) VALUES
+('Java', 'BACKEND'), ('Spring Boot', 'BACKEND'), ('Python', 'BACKEND'), ('Node.js', 'BACKEND'),
+('React', 'FRONTEND'), ('Vue.js', 'FRONTEND'), ('TypeScript', 'FRONTEND'),
+('Swift', 'MOBILE'), ('Kotlin', 'MOBILE'), ('Flutter', 'MOBILE'),
+('MySQL', 'DB'), ('MongoDB', 'DB'),
+('AWS', 'OTHER'), ('Docker', 'OTHER'), ('Coding Test', 'OTHER');
+```
+
+```sql
+-- 3. 블랙리스트 (2명)
+INSERT INTO black_list (email, reason) VALUES
+('scammer1@test.com', '도배/스팸'),
+('baduser@test.com', '욕설/분쟁');
 ```
 </details>
 
 <details>
-  <summary>1. 기초 데이터 (지역 및 태그)</summary>  
+  <summary>2. 회원 데이터 (User)</summary>  
 
 ```sql
--- 1. 공통 지역 코드 (주요 도시 등록)
-INSERT INTO `common_region` (`city`) VALUES
-('서울'), ('경기'), ('인천'), ('부산'), ('대구'), ('대전'), ('광주'), ('제주'), ('온라인');
+-- 회원 20명 생성 (일반 유저 19명, 관리자 1명)
+INSERT INTO `user`
+(pw, name, gender, birth_date, phone, nickname, profile_image, email, region_id,
+ completed_studies, penalty_count, reliability_score, status, last_nickname_update, role)
+VALUES
+('pw1','김민수','M','1999-01-10','010-2000-0001','minsu',NULL,'minsu1@test.com',1, 3,0,4.3,'ACTIVE',NULL,'USER'),
+('pw2','이서연','F','2000-02-14','010-2000-0002','seoyeon',NULL,'seoyeon2@test.com',2, 1,0,3.6,'ACTIVE',NULL,'USER'),
+('pw3','박지훈','M','1998-03-21','010-2000-0003','jihun',NULL,'jihun3@test.com',3, 0,1,2.3,'ACTIVE',NULL,'USER'),
+('pw4','최유진','F','2001-04-02','010-2000-0004','yujin',NULL,'yujin4@test.com',1, 2,0,4.0,'ACTIVE',NULL,'USER'),
+('pw5','정현우','M','1997-05-07','010-2000-0005','hyunwoo',NULL,'hyunwoo5@test.com',4, 6,0,4.6,'ACTIVE',NULL,'USER'),
+('pw6','한지민','F','1999-06-11','010-2000-0006','jimin',NULL,'jimin6@test.com',5, 1,0,3.3,'ACTIVE',NULL,'USER'),
+('pw7','오세훈','M','2000-07-19','010-2000-0007','sehun',NULL,'sehun7@test.com',6, 0,0,2.8,'ACTIVE',NULL,'USER'),
+('pw8','윤아름','F','1998-08-28','010-2000-0008','areum',NULL,'areum8@test.com',7, 4,0,4.4,'ACTIVE',NULL,'USER'),
+('pw9','장도윤','M','2001-09-09','010-2000-0009','doyoon',NULL,'doyoon9@test.com',8, 0,2,1.5,'SUSPENDED',NULL,'USER'),
+('pw10','서하늘','F','1999-10-12','010-2000-0010','haneul',NULL,'haneul10@test.com',9, 2,0,3.7,'ACTIVE',NULL,'USER'),
+('pw11','남태현','M','1996-11-30','010-2000-0011','taehyun',NULL,'taehyun11@test.com',4, 7,0,4.8,'ACTIVE',NULL,'USER'),
+('pw12','신수빈','F','2000-12-25','010-2000-0012','subin',NULL,'subin12@test.com',5, 1,0,3.1,'ACTIVE',NULL,'USER'),
+('pw13','백승민','M','1999-01-03','010-2000-0013','seungmin',NULL,'seungmin13@test.com',6, 2,0,3.5,'ACTIVE',NULL,'USER'),
+('pw14','문예린','F','2002-02-06','010-2000-0014','yerin',NULL,'yerin14@test.com',1, 0,0,2.5,'ACTIVE',NULL,'USER'),
+('pw15','강준호','M','1998-03-16','010-2000-0015','junho',NULL,'junho15@test.com',2, 3,0,4.1,'ACTIVE',NULL,'USER'),
+('pw16','임채원','F','2001-04-22','010-2000-0016','chaewon',NULL,'chaewon16@test.com',3, 1,0,3.4,'ACTIVE',NULL,'USER'),
+('pw17','홍성민','M','1997-05-25','010-2000-0017','sungmin',NULL,'sungmin17@test.com',4, 5,1,4.5,'ACTIVE',NULL,'USER'),
+('pw18','김다은','F','1999-06-17','010-2000-0018','daeun',NULL,'daeun18@test.com',5, 0,0,2.9,'ACTIVE',NULL,'USER'),
+('pw19','조성훈','M','2000-07-03','010-2000-0019','sunghoon',NULL,'sunghoon19@test.com',6, 1,0,3.2,'ACTIVE',NULL,'USER'),
+('pw20','유나','F','2002-08-12','010-2000-0020','yuna',NULL,'yuna20@test.com',9, 0,0,2.6,'ACTIVE',NULL,'ADMIN');
 ```
 </details>
+
+
+
