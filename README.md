@@ -1025,6 +1025,7 @@ DELIMITER ;
 - 스터디에서 강퇴당하면  팀장ID로 입력 모든 점수 1점으로 입력
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_004/%EC%8A%A4%ED%84%B0%EB%94%94%EC%97%90%EC%84%9C%20%EA%B0%95%ED%87%B4%EB%8B%B9%ED%95%98%EB%A9%B4%20%20%ED%8C%80%EC%9E%A5ID%EB%A1%9C%20%EC%9E%85%EB%A0%A5%20%EB%AA%A8%EB%93%A0%20%EC%A0%90%EC%88%98%201%EC%A0%90%20%EC%9E%85%EB%A0%A5.png?raw=true)
 
+
 </details>
 
 <details>
@@ -1083,6 +1084,7 @@ CALL sp_update_member_status(2, 5, 6, 'REJECTED');
 
 - 리더면 REJECTED로 변경 가능함
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_006/%EB%A6%AC%EB%8D%94%EB%A1%9C%20%EB%B0%94%EA%BE%B8%EB%A9%B4%20%EC%83%81%ED%83%9C%EC%97%85%EB%8E%83%EB%90%A8.png?raw=true)
+
 
 </details>
 
@@ -1167,6 +1169,7 @@ CALL change_withdraw_leader(2, 3, 4);
 - 프로시저 생성 후 팀장이 4번 유저에게 위임후 나감
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_007/%ED%94%84%EB%A1%9C%EC%8B%9C%EC%A0%80%20%EC%83%9D%EC%84%B1%ED%9B%84/%ED%8C%80%EC%9E%A5%EC%9D%B4%204%EB%B2%88%20%EC%9C%A0%EC%A0%80%EC%97%90%EA%B2%8C%20%EC%9C%84%EC%9E%84%ED%9B%84%20%EB%82%98%EA%B0%90.png?raw=true)
 
+
 </details>
 
 <details>
@@ -1204,6 +1207,7 @@ DELIMITER ;
 -스터디 완료시 ACCEPTED 였던 멤버만 completed_studies 1 증가
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_008/%EC%8A%A4%ED%84%B0%EB%94%94%20%EC%99%84%EB%A3%8C%EC%8B%9C%20ACCEPTED%EB%90%9C%20%EB%A9%A4%EB%B2%84%EB%A7%8C%20completed_studies%EA%B0%80%201%20%EC%A6%9D%EA%B0%80.png?raw=true)
 
+
 </details>
 
 <details>
@@ -1232,32 +1236,6 @@ VALUES (2, 4, 'MEMBER', 'PENDING');
 
 </details>
 
-<details>
-<summary>1-1. 회원가입</summary>
-
-```sql
-
-```
-
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
-
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
-
-
-</details>
-
-<details>
-<summary>1-1. 회원가입</summary>
-
-```sql
-
-```
-
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
-
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
-
-</details>
 
 ### 👤 5. 윤정윤
 <details>
