@@ -21,18 +21,19 @@
 - [👥 팀원 소개](#-팀원-소개)
 - [💡 배경 및 필요성](#-배경-및-필요성)
 - [🔧 주요 기능](#-주요-기능)
+- [🎯 서비스 목표](#-서비스-목표)
+- [👤 핵심 가치 및 전략](#-핵심-가치-및-전략)
+- [🔧 주요 기능](#-주요-기능)
 - [📅 프로젝트 진행 일정 (WBS)](#-프로젝트-진행-일정-wbs)
 - [📋 요구사항 명세서](#-요구사항-명세서)
-  - [✅ 요구사항](#-요구사항-)
 - [🧩 데이터베이스 설계](#-데이터베이스-설계)
-  - [📌 ERD 구조도](#erd-구조도)
+  - [📌 ERD 구조도](#-erd-구조도)
   - [📋 테이블 명세서](#-테이블-명세서)
-  - [📌 아키텍처](#아키텍처)
-  - [📌 Schema DDL](#schema-ddl)
-- [🧪 샘플 데이터 (DML)](#-샘플-데이터-dml)
-- [🧠 쿼리 실행 결과 (Code)](#-구현-결과-code)
-- [🔧 수정 및 향후 개선사항](#-수정-및-향후-개선사항)
-- [💻테스트](#테스트)
+  - [📌 Schema DDL](#-schema-ddl)
+  - [🧪 샘플 데이터 삽입(DML) ](#-샘플-데이터-삽입-dml)
+- [🧠 쿼리 실행 결과](#-쿼리-실행-결과)
+- [📌 아키텍처](#-아키텍처)
+- [💻 테스트](#-테스트)
 - [🎓 회고록](#회고록)
 
 ---
@@ -59,13 +60,15 @@
 
 </div>
 
+---
+
 ## 💡 **배경 및 필요성**
 
 - 최근 협업 환경이 비대면 및 온·오프라인 혼합형으로 변화함에 따라 팀 기반 학습 비중이 급격히 증가하면서 스터디 빈도가 어느 때보다 높아짐.
 - 그러나 여전히 많은 사람들은 단순히 '아는 사람' 위주로 팀을 구성, 성향과 역량을 알지 못한 채, 무작위로 팀원을 만나면서 큰 피로감과 갈등을 유발함.
 - 따라서 **팀원 평가**를 통해 공정한 팀 구성과 각자의 **책임 있는 참여를 보장**할 수 있는 **매칭 시스템 및 협업 이력 관리 시스템의 도입이 필요성**을 느껴 프로젝트를 기획함.
 
----
+
 
 ## 🎯 **서비스 목표**
 
@@ -73,7 +76,7 @@
 - **투명한 이력 관리** : 스터디 완수, 중도 포기, 강제 퇴장 등 모든 협업 이력을 데이터화하여 관리.
 - **신뢰 중심 시스템** : 상호 평가 시스템을 통해 성실한 유저가 우대받고, 불성실한 유저는 페널티를 받는 자정 작용 시스템 구축.
 
----
+
 
 ## 👤 **핵심 가치 및 전략**
 
@@ -120,7 +123,6 @@
 - 블랙리스트 제도 : 신고 누적 유저에 대한 서비스 이용 정지 및 내부 심사를 통한 강제 탈퇴(페널티 3회 누적 시) 처리.
 - 대시보드 : 신규 스터디 생성 추이 및 유입 인원 통계 모니터링.
 
----
 
 ---
 
@@ -128,18 +130,18 @@
 
 <img src="./image/WBS.jpg" width="1000" alt="Project Logo" />
 
-- [📂 일정표 자세히 보기 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=153074575#gid=153074575)
+- [📂 WBS (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=153074575#gid=153074575)
 
 ---
 
 ## 📋 요구사항 명세서
 
-### 🧾 요구사항 정의서
+### 🧾 요구사항 명세서
 <p align="center">
-  <img src="./image/requirements.jpg" width="175%" alt="요구사항 정의서 미리보기" />
+  <img src="./image/requirements.jpg" width="175%" alt="요구사항 명세서" />
 </p>
 
-- [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
+- [📂 요구사항 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
 
 ### ✅ 중점 요구사항
 - 사용자 계정 생성, 로그인, 정보 수정 및 탈퇴 (블랙리스트 대조 포함)
@@ -158,10 +160,11 @@
 
 ### 📌 ERD 구조도
 <img src="./image/ERD.png" width="1000" alt="ERD image" /></br>
-- [📌 ERD 구조도 링크](https://www.erdcloud.com/d/ZdriHsJtzb2qyHtfq)
+- [📌 ERD 구조도 (링크)](https://www.erdcloud.com/d/ZdriHsJtzb2qyHtfq)
 
 ### 📋 테이블 명세서
-- [📂 테이블 명세서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
+<img src="./image/Table_Specification.png" width="1000" alt="Table Specification image" /></br>
+- [📂 테이블 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
 
 ### 📌 Schema DDL
 <details>
@@ -314,7 +317,7 @@ CREATE TABLE `study_member`
     `status`            ENUM('PENDING','ACCEPTED','REJECTED','WITHDRAWN','KICKED', 'CANCELED') NOT NULL DEFAULT 'PENDING', -- 참여상태
     `kick_reason`       TEXT NULL,                          -- 강퇴 사유
     `status_updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 상태변경일
-    `is_hidden`         BOOLEAN NOT NULL DEFAULT FALSE,     -- 거절내역 숨김처리
+    `is_hidden`         TINYINT NULL DEFAULT 0,     -- 거절내역 숨김처리
     `joined_at`         DATETIME NULL,                      -- 스터디 가입(승인) 일시
     UNIQUE KEY `UQ_study_member_limit` (`post_id`, `user_id`),
     FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`),
@@ -323,7 +326,23 @@ CREATE TABLE `study_member`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 9. 채팅 메시지
+### 9. 북마크
+
+```sql
+-- 관심 스터디 저장 내역
+CREATE TABLE `bookmark`
+(
+    `bookmark_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 북마크 ID
+    `user_id`     INT NOT NULL,                         -- 회원 ID (FK)
+    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
+    UNIQUE KEY `UQ_user_bookmark` (`user_id`, `post_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`)
+) COMMENT '북마크'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 10. 채팅 메시지
 
 ```sql
 -- 스터디 그룹 내 실시간 채팅 메시지
@@ -340,22 +359,6 @@ CREATE TABLE `chat_message`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 10. 북마크
-
-```sql
--- 관심 스터디 저장 내역
-CREATE TABLE `bookmark`
-(
-    `bookmark_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 북마크 ID
-    `user_id`     INT NOT NULL,                         -- 회원 ID (FK)
-    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
-    UNIQUE KEY `UQ_user_bookmark` (`user_id`, `post_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`)
-) COMMENT '북마크'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
 ### 11. 채팅 읽음 상태
 
 ```sql
@@ -365,7 +368,7 @@ CREATE TABLE `chat_read_status`
     `read_id`    INT PRIMARY KEY AUTO_INCREMENT,        -- 읽음 ID
     `message_id` INT NOT NULL,                          -- 메시지 ID (FK)
     `user_id`    INT NOT NULL,                          -- 회원 ID (FK)
-    `is_read`    BOOLEAN NOT NULL DEFAULT FALSE,        -- 읽음여부
+    `is_read`    TINYINT NOT NULL DEFAULT 0,        -- 읽음여부
     UNIQUE KEY `UQ_chat_read` (`message_id`, `user_id`),
     FOREIGN KEY (`message_id`) REFERENCES `chat_message` (`message_id`),
     FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
@@ -772,7 +775,7 @@ VALUES
 
 ---
 
-## 🧠 쿼리 실행 결과 (Code)
+## 🧠 쿼리 실행 결과
 ### 👤 1. 회원 기초 및 인증
 <details>
 <summary>1-1. 회원가입</summary>
@@ -2124,11 +2127,13 @@ DELIMITER ;
 ![신고 사항 처리](./이다윗/ADMIN_004/7.%20시스템%20통계%20대시보드.png) 
 </details>
 
-### 📌 아키텍처
+---
+
+## 📌 아키텍처
 <img src="./image/Web_App_Reference_Architecture_1.webp" width="1000" alt="ERD image" />
 
 
-### 🔍 테스트
+## 🔍 테스트
 <details>
 <summary>1. 쿼리 분기 테스트</summary>
 
@@ -2161,34 +2166,29 @@ DELIMITER ;
 >  
 >  
 
----
 
 ### 🌸 김다솜
 >  학교에서 배운
 >  
 >  
 
----
 
 ### 🔍 이애은
->  
+>  .
 >  
 >  
 
----
 
 ### 🌿 이용호
->  
+>  .
 >  
 >  
 
----
 
 ### ✨ 윤정윤
->  
+>  .
 
 
----
 
 ### ✏️ 박재하
 >  처음 진행하는 프로젝트라 어려움도 많았지만 배움도 많았던 경험이었습니다.
