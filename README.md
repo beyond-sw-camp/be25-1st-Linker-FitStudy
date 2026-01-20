@@ -124,7 +124,7 @@
 
 <img src="./image/WBS.jpg" width="1000" alt="Project Logo" />
 
-- [📂 일정표 자세히 보기 (링크)]([https://docs.google.com/spreadsheets/d/1rJIUxV4W8rlf0Q7GiBcsVRYuY1JH6BskKCvWa9DXjHo/edit?gid=0#gid=0])
+- [📂 일정표 자세히 보기 (링크)](https://docs.google.com/spreadsheets/d/1rJIUxV4W8rlf0Q7GiBcsVRYuY1JH6BskKCvWa9DXjHo/edit?gid=0#gid=0)
 
 ---
 
