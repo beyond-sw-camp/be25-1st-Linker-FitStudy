@@ -776,3 +776,92 @@ VALUES
 ```
 
 </details>
+
+
+---
+
+## 🧠 프로시저 실행 결과
+### 👤 1. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+### 👤 2. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+### 👤 3. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+### 👤 4. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+### 👤 5. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+### 👤 6. 사용자 및 반려동물 관리
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
