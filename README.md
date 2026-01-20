@@ -1229,7 +1229,7 @@ WHERE post_id = 2 AND user_id=4;
 INSERT INTO study_member (post_id, user_id, role, STATUS) 
 VALUES (2, 4, 'MEMBER', 'PENDING');
 ```
-- 유저가 공고에 참여신청
+- 유저가 공고에 참여신청</br>
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/MEMBER_001/4%EB%B2%88%20%EC%9C%A0%EC%A0%80%EA%B0%80%202%EB%B2%88%20%EA%B3%B5%EA%B3%A0%EC%97%90%20%EC%B0%B8%EC%97%AC%20%EC%8B%A0%EC%B2%AD%20%ED%9B%84.png?raw=true)
 
 - 같은 공고에 중복 신청 방지
