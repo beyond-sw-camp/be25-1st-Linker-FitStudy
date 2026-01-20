@@ -968,16 +968,121 @@ VALUES
 
 ### 👤 5. 윤정윤
 <details>
-<summary>1-1. 회원가입</summary>
+<summary>5-1. 유저 스터디 참여 현황 조회</summary>
 
 ```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE studyStatusProc(
+    IN p_userId INT,
+    IN p_studyStatus VARCHAR(20)
+)
+BEGIN
+    SELECT
+        sp.post_id,
+        sp.title,
+        sm.status AS '상태',
+        sm.user_id
+    FROM study_member sm
+             JOIN study_post sp ON sp.post_id = sm.post_id
+    WHERE sm.user_id = p_userId
+      AND (
+        p_studyStatus IS NULL
+            OR sm.status = p_studyStatus
+        );
+END$$
+DELIMITER ;
 
+CALL studyStatusProc(10, 'PENDING');
 ```
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_013_result.png?raw=true)
 
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+</details>
 
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+<details>
+<summary>5-2. 거절된 스터디 내역 삭제</summary>
 
+```sql
+-- '거절됨' 스터디 내역 삭제
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE deleteStudyRecordProc(
+    IN userId INT,
+    IN postId INT
+)
+BEGIN
+    DELETE FROM study_member
+    WHERE user_id = userId AND post_id = postId AND status = 'REJECTED';
+END$$
+DELIMITER ;
+
+CALL deleteStudyRecordProc(1, 3);
+```
+</details>
+
+<details>
+<summary>5-3. 북마크 등록</summary>
+
+```sql
+-- 로그인된 아이디와 게시물 아이디를 통해 북마크 등록
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE createBookmarkProc(
+    IN userId INT,
+    IN postId INT
+)
+BEGIN
+    DECLARE CONTINUE HANDLER FOR 1062
+        SELECT '이미 존재하는 북마크 입니다.' AS result;
+
+    INSERT INTO bookmark(user_id, post_id)
+    VALUES (userId, postId);
+END$$
+DELIMITER ;
+
+CALL createBookmarkProc(1, 5);
+```
+</details>
+
+<details>
+<summary>5-4. 북마크 조회</summary>
+
+```sql
+-- 로그인된 아이디를 통해 북마크 목록 조회
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE showBookmarkProc(
+    IN userId INT
+)
+BEGIN
+    SELECT bookmark.*,
+           sp.title
+    FROM bookmark
+             LEFT OUTER JOIN study_post sp ON bookmark.post_id = sp.post_id
+    WHERE user_id = userId;
+END$$
+DELIMITER ;
+
+CALL showBookmarkProc(1);
+```
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_016_result.png?raw=true)
+
+</details>
+
+<details>
+<summary>5-5. 북마크 조회</summary>
+
+```sql
+-- 로그인된 아이디와 게시물 아이디를 통해 북마크 해제
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE deleteBookmarkProc(
+    IN userId INT,
+    IN postId INT
+)
+BEGIN
+    DELETE FROM bookmark
+    WHERE user_id = userId AND post_id = postId;
+END$$
+DELIMITER ;
+
+CALL deleteBookmarkProc(1, 5);
+```
 
 </details>
 
