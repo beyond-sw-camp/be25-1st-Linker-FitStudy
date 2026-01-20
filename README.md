@@ -23,11 +23,11 @@
 - [💡 배경 및 필요성](#-배경-및-필요성)
 - [🔧 주요 기능](#-주요-기능)
 - [📅 프로젝트 진행 일정 (WBS)](#-프로젝트-진행-일정-wbs)
-- [📋 요구사항 명세](#-요구사항-명세)
+- [📋 요구사항 명세서](#-요구사항-명세서)
   - [✅ 요구사항](#-요구사항-)
 - [🧩 데이터베이스 설계](#-데이터베이스-설계)
   - [📌 ERD 구조도](#erd-구조도)
-  - [📋 테이블 명세](#-테이블-명세)
+  - [📋 테이블 명세서](#-테이블-명세서)
   - [📌 아키텍처](#아키텍처)
   - [📌 Schema DDL](#schema-ddl)
 - [🧪 샘플 데이터 (DML)](#-샘플-데이터-dml)
@@ -51,7 +51,7 @@
 
 <br>
 
-| <img src="./image/zootopia_rat.png" width="150"><br>**윤정윤** | <img src="[팀원5 이미지 URL]" width="150"><br>**이용호** | <img src="박재하/profile_P.jpg" width="150"><br>**박재하** |
+| <img src="./image/zootopia_rat.png" width="150"><br>**윤정윤** | <img src="image/member_leeyongho.jpg" width="150"><br>**이용호** | <img src="박재하/profile_P.jpg" width="150"><br>**박재하** |
 | :---: | :---: | :---: |
 | **팀원 / 마이페이지 및 개인화** | **팀원 /  회원 기초 및 인증** | **팀원 / 스터디 관리 및 리더 기능** |
 | <a href="https://github.com/penep0"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="[깃허브 주소]"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/horolo1234"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> |
@@ -96,7 +96,7 @@
   
 - 팀장 위임: 팀장 탈퇴 시 평점이 높은 팀원에게 권한 자동 위임.
 
-### **3. 맞춤 매칭 및 검색 (팀원 기능)***
+### **3. 맞춤 매칭 및 검색 (팀원 기능)**
 
 - 태그 기반 추천 알고리즘 : 사용자의 태그와 스터디 공고의 태그 일치율을 분석하여 적합도 점수 산정 및 상단 노출.
 - 다차원 검색 필터 : 기술 스택별, 지역별, 온/오프라인 여부, 모집 상태(모집중/완료)로 상세 검색 제공.
@@ -139,7 +139,7 @@
 
 - [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
 
-### ✅ 요구사항
+### ✅ 중점 요구사항
 - 사용자 계정 생성, 로그인, 정보 수정 및 탈퇴 (블랙리스트 대조 포함)
 - 태그 기반 맞춤 스터디 추천 및 필터링 검색 (지역/온오프라인)
 - 스터디 모집글 작성, 수정, 삭제 및 상태 관리
@@ -909,7 +909,7 @@ DELIMITER ;
 ![image](김다솜/COMM_001/Read_Chat_Result.png)
 </details>
 
-### 🔍 3. 스터디 탐색 및 조회 (Discovery)
+### 🔍 3. 스터디 탐색 및 조회
 <details>
 <summary>3-1. 맞춤 스터디 공고 조회</summary>
 
@@ -1041,7 +1041,7 @@ CALL viewStudy(1); -- 게시물 아이디 입력
 
 </details>
 
-### 👑 4. 스터디 관리 및 리더 기능 (Management) 
+### 👑 4. 스터디 관리 및 리더 기능
 <details>
 <summary>4-1. [트리거] 스터디 모집글 작성</summary>
 
@@ -1452,7 +1452,7 @@ VALUES (2, 4, 'MEMBER', 'PENDING');
 </details>
 
 
-### 👤 5. 유저 스터디 현황 조회 및 북마크 관리
+### 🔖 5. 유저 스터디 현황 조회 및 북마크 관리
 <details>
 <summary>5-1. 유저 스터디 참여 현황 조회</summary>
 
@@ -1572,7 +1572,7 @@ CALL deleteBookmarkProc(1, 5);
 
 </details>
 
-### 👤 6. 운영 및 제재 관리
+### 👮 6. 운영 및 제재 관리
 
 <details>
 <summary>6-1. 신고사항 조회</summary>
@@ -1598,7 +1598,7 @@ ORDER BY r.created_at DESC;
 </details>
 
 <details> 
-<summary>1-2. 상태별 필터링 조회</summary>
+<summary>6-2. 상태별 필터링 조회</summary>
 <br>
 
 ```sql
@@ -1619,7 +1619,7 @@ ORDER BY r.created_at DESC;
 </details>
 
 <details> 
-<summary>1-3. 신고 처리 상태 변경</summary>
+<summary>6-3. 신고 처리 상태 변경</summary>
 <br>
 
 ```sql
@@ -1632,16 +1632,10 @@ WHERE report_id = 1; -- 예시 ID
 ![신고사항 조회](./이다윗/ADMIN_001/1-3%20신고사항%20처리상태%20업데이트.png) 
 </details>
 
-</details>
-
-<details>
-<summary>2. 신고 사항 처리</summary>
-<br>
-
 <details> 
-<summary>2-1. 신고 처리</summary>
+<summary>6-4. [프로시저] 신고 처리</summary>
 <br>
->
+
 ```sql
 -- ADMIN_002: 신고 사항 처리
 
@@ -1699,7 +1693,7 @@ DELIMITER ;
 </details>
 
 <details> 
-<summary>2-2. [트리거] 공고 취소 시 멤버 자동 탈퇴</summary>
+<summary>6-5. [트리거] 공고 취소 시 멤버 자동 탈퇴</summary>
 <br>
 
 ```sql
@@ -1731,14 +1725,8 @@ DELIMITER ;
 ![신고 사항 처리](./이다윗/ADMIN_002/2-2.%20스터디%20포스트_이후.png)
 </details>
 
-</details>
-
 <details>
-<summary>3. 유저 제재</summary>
-<br>
-  
-<details>
-<summary>3-1. [트리거] 신고 승인 시 패널티 증가</summary>
+<summary>6-6. [트리거] 신고 승인 시 패널티 증가</summary>
 <br>
 
 ```sql	
@@ -1766,7 +1754,7 @@ DELIMITER ;
 </details>
 
 <details> 
-<summary>3-2. [트리거] 3회 누적 시 강제 탈퇴 및 블랙리스트</summary>
+<summary>6-7. [트리거] 3회 누적 시 강제 탈퇴 및 블랙리스트</summary>
 <br>
 
 ```sql
@@ -1799,8 +1787,8 @@ DELIMITER ;
 ![신고 사항 처리](./이다윗/ADMIN_003/5-2.%20블랙리스트_이후.png) 
 </details>
 
-<details
-<summary>3-3. [트리거] 블랙리스트에 등록된 이메일로 가입 시도 시 차단</summary>
+<details>
+<summary>6-8. [트리거] 블랙리스트에 등록된 이메일로 가입 시도 시 차단</summary>
 <br>
 
 ```sql
@@ -1820,10 +1808,8 @@ END //
 ![신고 사항 처리](./이다윗/ADMIN_003/6.%20차단된%20블랙리스트.png) 
 </details>
 
-</details>
-
 <details>
-<summary>4. 시스템 통계 대시보드 (신규 공고 수, 신규 참여 수)</summary>
+<summary>6-9. 시스템 통계 대시보드 (신규 공고 수, 신규 참여 수)</summary>
 <br>
 	
 ```sql
@@ -1870,22 +1856,22 @@ DELIMITER ;
 <summary>2. 장애 복구 테스트</summary>
 
 - 기본 데이터베이스 상태
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/default_status.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/default_status.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/default_status.png?raw=true)
 
 - Master DB 장애 이후 Slave DB를 Mater로 승격
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/replica_to_master.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/replica_to_master.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/replica_to_master.png?raw=true)
 
 - Mater 서버 복구 후 DB role 정상화
-![image]([https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/return_master.png?raw=true](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/return_master.png?raw=true))
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/return_master.png?raw=true)
 </details>
 
 <details>
 <summary>3. 쿼리 튜닝 테스트</summary>
 
 </details>
-## 회고록
 
----
+## **회고록**
+
 
 ### 🌱 이다윗
 >  예시 예시
