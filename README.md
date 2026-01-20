@@ -804,8 +804,9 @@ VALUES (10, 9, 'SPAM', '욕설');
 </details>
 
 <details>
-<summary>2-2. 게시글 신고</summary>
-```sql
+<summary>2-2. 게시글 신고</summary>  
+	
+```sql  	
 INSERT INTO user_report (
     reporter_id,
     target_id,
@@ -814,8 +815,11 @@ INSERT INTO user_report (
 	 target_post_id)
 VALUES (5, 2, 'SPAM', '욕설', 2);
 ```
+	
 
-![image](김다솜/USER_009/post_report.png)
+![image](김다솜/USER_009/Error.png)
+
+<br>
 </details>
 
 <details>
