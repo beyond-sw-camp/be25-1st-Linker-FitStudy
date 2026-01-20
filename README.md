@@ -43,7 +43,7 @@
   <img src="https://capsule-render.vercel.app/api?type=soft&color=auto&height=80&section=footer&text=Team%20Linker&fontSize=40&fontColor=ffffff&animation=fadeIn" />
 </p>
 
-| <img src="./image/zootopia_nibbles.png" width="150"><br>**이다윗** | <img src="김다솜/profileK.jpg" width="150"><br>**김다솜** | <img src="image/member_leeaeeun.png" width="150"><br>**이애은** |
+| <img src="./image/zootopia_nibbles.png" width="150"><br>**이다윗** | <img src="김다솜/profileK.png" width="150"><br>**김다솜** | <img src="image/member_leeaeeun.png" width="150"><br>**이애은** |
 | :---: | :---: | :---: |
 | **팀장 / 운영 및 제재 관리** | **팀원 / 상호작용 및 커뮤니케이션** | **팀원 / 스터디 탐색 및 조회** |
 | <a href="https://github.com/Dawit-lee"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/Myang09"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/nueeaeel"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> |
