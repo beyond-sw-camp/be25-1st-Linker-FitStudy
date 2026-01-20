@@ -1318,8 +1318,8 @@ DELIMITER ;
 -- 리더가 PENDING인 사람 ACCEPTED나 REJECTED로 바꿈
 DELIMITER $$
 CREATE PROCEDURE `update_member_status`(
-    IN p_post_id INT,		-- 스터디 공고 ID
-    IN p_requester_id INT,		-- 요청자 ID (리더인지 검증할 ID)
+    IN p_post_id INT,	-- 스터디 공고 ID
+    IN p_requester_id INT,	-- 요청자 ID (리더인지 검증할 ID)
     IN p_target_id INT,		-- 상태를 변경할 대상 회원 ID
     IN p_new_status VARCHAR(20)		-- 변경할 상태 (REJECTED, ACCEPTED 등)
 )
@@ -1330,8 +1330,8 @@ BEGIN
     SET sm.status = p_new_status,
         sm.status_updated_at = NOW()
     WHERE sm.post_id = p_post_id
-      AND sm.user_id = p_target_id		-- 변경 대상
-      AND sp.leader_id = p_requester_id;		-- 요청자가 리더여야만 실행
+      AND sm.user_id = p_target_id	-- 변경 대상
+      AND sp.leader_id = p_requester_id;	-- 요청자가 리더여야만 실행
 
     -- 2. 결과 반환
     SELECT post_id, 
