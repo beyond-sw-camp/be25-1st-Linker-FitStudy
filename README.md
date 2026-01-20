@@ -1166,16 +1166,16 @@ CALL sp_update_member_status(2, 3, 6, 'REJECTED');
 CALL sp_update_member_status(2, 5, 6, 'REJECTED');
 ```
 - 멤버면 ACCEPTED로 변경 불가능함
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005/%EB%A9%A4%EB%B2%84%EB%A9%B4%20ACCEPTED%20%EB%A1%9C%20%EB%AA%BB%EB%B0%94%EA%BF%88.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005,%20006/LEADER_005/%EB%A9%A4%EB%B2%84%EB%A9%B4%20ACCEPTED%20%EB%A1%9C%20%EB%AA%BB%EB%B0%94%EA%BF%88.png?raw=true)
 
 - 리더면 ACCEPTED로 변경 가능함
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005/%EB%A6%AC%EB%8D%94%EB%A9%B4%20ACCEPTED%20%EB%B3%80%EA%B2%BD%20%EA%B0%80%EB%8A%A5.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005,%20006/LEADER_005/%EB%A6%AC%EB%8D%94%EB%A9%B4%20ACCEPTED%20%EB%B3%80%EA%B2%BD%20%EA%B0%80%EB%8A%A5.png?raw=true)
 
 - 멤버면 REJECTED로 변경 불가능
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_006/%EB%A6%AC%EB%8D%94%20%EC%95%84%EB%8B%88%EB%9D%BC%EC%84%9C%20%EC%83%81%ED%83%9C%EC%97%85%EB%8E%83%20%EC%95%88%EB%90%A8.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005,%20006/LEADER_006/%EB%A6%AC%EB%8D%94%20%EC%95%84%EB%8B%88%EB%9D%BC%EC%84%9C%20%EC%83%81%ED%83%9C%EC%97%85%EB%8E%83%20%EC%95%88%EB%90%A8.png?raw=true)
 
 - 리더면 REJECTED로 변경 가능함</br>
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_006/%EB%A6%AC%EB%8D%94%EB%A1%9C%20%EB%B0%94%EA%BE%B8%EB%A9%B4%20%EC%83%81%ED%83%9C%EC%97%85%EB%8E%83%EB%90%A8.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005,%20006/LEADER_006/%EB%A6%AC%EB%8D%94%EB%A9%B4%20%EC%83%81%ED%83%9C%EC%97%85%EB%8E%83%EB%90%A8.png?raw=true)
 
 
 </details>
