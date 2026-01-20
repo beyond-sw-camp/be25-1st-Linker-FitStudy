@@ -1400,12 +1400,17 @@ CALL deleteBookmarkProc(1, 5);
 <details>
 <summary>1. 쿼리 분기 테스트</summary>
 
+- 분기 테스트용 쿼리 -> ProxySQL(6033)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/routing_test_query.png?raw=true)
+
+- 쿼리 분기 결과 조회 -> 6032(admin)  hostgroup 10 = master, hostgroup 20 = slave
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/test_result/query%20routing_result.png?raw=true)
+
 </details>
 
 <details>
 <summary>2. 장애 복구 테스트</summary>
 
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/default_status.png?raw=true)
 - 기본 데이터베이스 상태
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/default_status.png?raw=true)
 
