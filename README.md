@@ -283,12 +283,14 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- 사용자의 스터디 참여 가능 시간대
 CREATE TABLE `user_available_time`
 (
-    `time_id`     INT PRIMARY KEY AUTO_INCREMENT,       -- 시간 설정 ID
-    `user_id`     INT NOT NULL,                         -- 회원 ID (FK)
-    `day_of_week` ENUM('MON','TUE','WED','THU','FRI','SAT','SUN') NOT NULL, -- 요일
-    `start_time`  TIME NOT NULL,                        -- 시작 시간
-    `end_time`    TIME NOT NULL,                        -- 종료 시간
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+    `time_id`     INT                                             NOT NULL AUTO_INCREMENT COMMENT '시간 설정 ID',
+    `user_id`     INT                                             NOT NULL COMMENT '회원 ID',
+    `day_of_week` ENUM('MON','TUE','WED','THU','FRI','SAT','SUN') NOT NULL COMMENT '요일',
+    `start_time`  TIME                                            NOT NULL COMMENT '시작 시간',
+    `end_time`    TIME                                            NOT NULL COMMENT '종료 시간',
+    PRIMARY KEY (`time_id`),
+    UNIQUE KEY `UQ_user_available_day` (`user_id`, `day_of_week`)
+    
 ) COMMENT '사용자 가능 시간'
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
