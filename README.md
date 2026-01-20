@@ -826,10 +826,180 @@ SELECT * FROM user WHERE email = 'sebi@gmail.com';
 ```
 ![image](이용호/USER_01/signupUser.png)
 
-<br>
 ![image](이용호/USER_01/Error.png)
 </details>
 
+<details>
+<summary>1-2. 로그인</summary>
+
+```sql
+-- 로그인
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE login(
+    IN p_userEmail VARCHAR(100),
+    IN p_userPw VARCHAR(255)
+)
+BEGIN
+    SELECT 
+    	IF(COUNT(*) > 0, '로그인 성공', '로그인 실패') AS '로그인 성공 여부'
+    FROM user 
+    WHERE email = p_userEmail AND pw = p_userPw;
+END$$
+DELIMITER ;
+
+CALL login('minsu1@test.com', 'pw1'); -- 로그인 성공
+
+CALL login('minsu1@test.com', 'pw2'); -- 로그인 실패
+```
+
+![image](이용호/USER_02/login_success.png)
+
+![image](이용호/USER_02/login_fail.png)
+</details>
+
+<details>
+<summary>1-3. 핵심 기술 스택 등록</summary>
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE registerTechStack(
+	 IN p_user_id INT,
+    IN p_tag_name VARCHAR(50) COLLATE utf8mb4_general_ci
+)
+BEGIN
+    DECLARE p_tag_id INT;
+    
+    SELECT tag_id
+    INTO p_tag_id
+    FROM common_tag
+    WHERE tag_name = p_tag_name;
+
+    INSERT INTO `user_tech_stack` (user_id, tag_id)
+    VALUES (p_user_id, p_tag_id);
+
+END$$
+
+DELIMITER ;
+
+CALL registerTechStack(21, 'JAVA');
+```
+
+![image](이용호/USER_03/registerTechStack.png)
+<br>
+</details>
+
+<details>
+<summary>1-4. 핵심 기술 스택 삭제</summary>
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE deleteTechStack(
+	 IN p_user_id INT,
+    IN p_tag_name VARCHAR(50)
+)
+BEGIN
+    DECLARE p_tag_id INT;
+    
+    SELECT tag_id
+    INTO p_tag_id
+    FROM common_tag
+    WHERE tag_name = p_tag_name;
+
+	 DELETE FROM user_tech_stack 
+    WHERE user_id = p_user_id AND tag_id = p_tag_id;
+
+END$$
+
+DELIMITER ;
+
+CALL deleteTechStack(21, 'JAVA');
+```
+![image](이용호/USER_04/deleteTechStack.png)
+<br>
+</details>
+
+<details>
+<summary>1-5. 협업 가능 시간 등록</summary>
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE registerAvailableTime(
+	 IN p_user_id INT,
+	 IN p_day_of_week VARCHAR(10), 
+	 IN p_start_time TIME, 
+	 IN p_end_time TIME 
+)
+BEGIN
+    INSERT INTO `user_available_time` (user_id, day_of_week, start_time, end_time)
+    VALUES (p_user_id, p_day_of_week, p_start_time, p_end_time);
+
+END$$
+
+DELIMITER ;
+
+CALL registerAvailableTime(21, 'MON', '00:00', '23:59');
+```
+
+![image](이용호/USER_05/registerAvailableTime.png)
+<br>
+</details>
+
+<details>
+<summary>1-6. 협업 가능 시간 수정</summary>
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE updateAvailableTime(
+	 IN p_user_id INT,
+	 IN p_day_of_week VARCHAR(10),
+	 IN p_start_time TIME, 
+	 IN p_end_time TIME 
+)
+BEGIN
+    UPDATE user_available_time
+    SET start_time = p_start_time, end_time = p_end_time
+    WHERE user_id = p_user_id AND day_of_week = p_day_of_week;
+END$$
+
+DELIMITER ;
+
+CALL updateAvailableTime(21, 'MON', '17:00', '16:00');
+```
+
+![image](이용호/USER_06/updateAvailableTime.png)
+<br>
+</details>
+
+<details>
+<summary>1-7. 협업 가능 시간 삭제</summary>
+
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE deleteAvailableTime(
+	 IN p_user_id INT,
+	 IN p_day_of_week VARCHAR(10)
+)
+BEGIN
+    DELETE 
+    FROM user_available_time
+    WHERE user_id = p_user_id AND day_of_week = p_day_of_week;
+
+END$$
+
+DELIMITER ;
+
+CALL deleteAvailableTime(21, 'MON');
+```
+
+![image](이용호/USER_07/deleteAvailableTime.png)
+<br>
+</details>
+	
 ### 🕵️ 2. 상호작용 및 커뮤니케이션
 <details>
 <summary>2-1. 회원 신고</summary>
