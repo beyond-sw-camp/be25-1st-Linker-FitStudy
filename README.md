@@ -172,6 +172,7 @@
 ### 📌 Schema DDL
 <details>
 <summary>DDL</summary>  
+  
 ### 1. 공통 지역 코드
 
 ```sql
