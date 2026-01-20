@@ -164,46 +164,7 @@
 <details>
 <summary>DDL</summary>  
   
-### 1. 공통 지역 코드
-
-```sql
--- 공통 지역 코드 (도/시 단위)
-CREATE TABLE `common_region`
-(
-    `region_id` INT PRIMARY KEY AUTO_INCREMENT,     -- 지역 ID
-    `city`      VARCHAR(50) NOT NULL                -- 도/시 (예: 서울, 경기)
-) COMMENT '공통 지역 코드'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 2. 블랙리스트
-
-```sql
--- 악성 사용자 관리를 위한 블랙리스트
-CREATE TABLE `black_list`
-(
-    `email`      VARCHAR(100) PRIMARY KEY,          -- 블랙리스트 이메일 (PK)
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 등록 일시
-    `reason`     TEXT NULL                          -- 등록 사유
-) COMMENT '블랙리스트 관리'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 3. 공통 태그
-
-```sql
--- 기술 스택 및 카테고리 태그 관리
-CREATE TABLE `common_tag`
-(
-    `tag_id`   INT PRIMARY KEY AUTO_INCREMENT,      -- 태그 고유 ID
-    `tag_name` VARCHAR(50) NOT NULL,                -- 태그 이름
-    `tag_type` ENUM('CATEGORY', 'LANGUAGE', 'FRONTEND', 'BACKEND', 'MOBILE', 'DB', 'OTHER') NOT NULL, -- 태그 유형
-    UNIQUE KEY `UQ_common_tag_name_type` (`tag_name`, `tag_type`)
-) COMMENT '공통 태그'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 4. 회원
+### 1. 회원
 
 ```sql
 -- 사용자 기본 정보 및 신뢰지수 관리
@@ -234,7 +195,83 @@ CREATE TABLE `user`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 5. 스터디 공고
+### 2. 사용자 가능 시간
+
+```sql
+-- 사용자의 스터디 참여 가능 시간대
+CREATE TABLE `user_available_time`
+(
+    `time_id`     INT                                             NOT NULL AUTO_INCREMENT COMMENT '시간 설정 ID',
+    `user_id`     INT                                             NOT NULL COMMENT '회원 ID',
+    `day_of_week` ENUM('MON','TUE','WED','THU','FRI','SAT','SUN') NOT NULL COMMENT '요일',
+    `start_time`  TIME                                            NOT NULL COMMENT '시작 시간',
+    `end_time`    TIME                                            NOT NULL COMMENT '종료 시간',
+    PRIMARY KEY (`time_id`),
+    UNIQUE KEY `UQ_user_available_day` (`user_id`, `day_of_week`)
+    
+) COMMENT '사용자 가능 시간'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 3. 공통 지역 코드
+
+```sql
+-- 공통 지역 코드 (도/시 단위)
+CREATE TABLE `common_region`
+(
+    `region_id` INT PRIMARY KEY AUTO_INCREMENT,     -- 지역 ID
+    `city`      VARCHAR(50) NOT NULL                -- 도/시 (예: 서울, 경기)
+) COMMENT '공통 지역 코드'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 4. 공통 태그
+
+```sql
+-- 기술 스택 및 카테고리 태그 관리
+CREATE TABLE `common_tag`
+(
+    `tag_id`   INT PRIMARY KEY AUTO_INCREMENT,      -- 태그 고유 ID
+    `tag_name` VARCHAR(50) NOT NULL,                -- 태그 이름
+    `tag_type` ENUM('CATEGORY', 'LANGUAGE', 'FRONTEND', 'BACKEND', 'MOBILE', 'DB', 'OTHER') NOT NULL, -- 태그 유형
+    UNIQUE KEY `UQ_common_tag_name_type` (`tag_name`, `tag_type`)
+) COMMENT '공통 태그'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 5. 유저 기술 스택
+
+```sql
+-- 사용자가 보유한 기술 스택 태그 매핑
+CREATE TABLE `user_tech_stack`
+(
+    `user_tech_id` INT PRIMARY KEY AUTO_INCREMENT,      -- 유저 기술 ID
+    `user_id`      INT NOT NULL,                        -- 회원 ID (FK)
+    `tag_id`       INT NOT NULL,                        -- 태그 ID (FK)
+    UNIQUE KEY `UQ_user_tech_stack` (`user_id`, `tag_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`tag_id`) REFERENCES `common_tag` (`tag_id`)
+) COMMENT '유저 기술 스택'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 6. 공고 태그
+
+```sql
+-- 스터디 공고에 설정된 태그 매핑
+CREATE TABLE `post_tag`
+(
+    `post_tag_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 공고 태그 ID
+    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
+    `tag_id`      INT NOT NULL,                         -- 태그 ID (FK)
+    UNIQUE KEY `UQ_post_tag` (`post_id`, `tag_id`),
+    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`),
+    FOREIGN KEY (`tag_id`) REFERENCES `common_tag` (`tag_id`)
+) COMMENT '공고 태그'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 7. 스터디 공고
 
 ```sql
 -- 스터디 모집 공고 정보
@@ -260,58 +297,8 @@ CREATE TABLE `study_post`
 ) COMMENT '스터디 공고'
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
-
-### 6. 유저 기술 스택
-
-```sql
--- 사용자가 보유한 기술 스택 태그 매핑
-CREATE TABLE `user_tech_stack`
-(
-    `user_tech_id` INT PRIMARY KEY AUTO_INCREMENT,      -- 유저 기술 ID
-    `user_id`      INT NOT NULL,                        -- 회원 ID (FK)
-    `tag_id`       INT NOT NULL,                        -- 태그 ID (FK)
-    UNIQUE KEY `UQ_user_tech_stack` (`user_id`, `tag_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-    FOREIGN KEY (`tag_id`) REFERENCES `common_tag` (`tag_id`)
-) COMMENT '유저 기술 스택'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 7. 사용자 가능 시간
-
-```sql
--- 사용자의 스터디 참여 가능 시간대
-CREATE TABLE `user_available_time`
-(
-    `time_id`     INT                                             NOT NULL AUTO_INCREMENT COMMENT '시간 설정 ID',
-    `user_id`     INT                                             NOT NULL COMMENT '회원 ID',
-    `day_of_week` ENUM('MON','TUE','WED','THU','FRI','SAT','SUN') NOT NULL COMMENT '요일',
-    `start_time`  TIME                                            NOT NULL COMMENT '시작 시간',
-    `end_time`    TIME                                            NOT NULL COMMENT '종료 시간',
-    PRIMARY KEY (`time_id`),
-    UNIQUE KEY `UQ_user_available_day` (`user_id`, `day_of_week`)
-    
-) COMMENT '사용자 가능 시간'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 8. 공고 태그
-
-```sql
--- 스터디 공고에 설정된 태그 매핑
-CREATE TABLE `post_tag`
-(
-    `post_tag_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 공고 태그 ID
-    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
-    `tag_id`      INT NOT NULL,                         -- 태그 ID (FK)
-    UNIQUE KEY `UQ_post_tag` (`post_id`, `tag_id`),
-    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`),
-    FOREIGN KEY (`tag_id`) REFERENCES `common_tag` (`tag_id`)
-) COMMENT '공고 태그'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 9. 스터디 멤버
+  
+### 8. 스터디 멤버
 
 ```sql
 -- 스터디 참여 멤버 및 상태 관리
@@ -333,23 +320,7 @@ CREATE TABLE `study_member`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 10. 북마크
-
-```sql
--- 관심 스터디 저장 내역
-CREATE TABLE `bookmark`
-(
-    `bookmark_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 북마크 ID
-    `user_id`     INT NOT NULL,                         -- 회원 ID (FK)
-    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
-    UNIQUE KEY `UQ_user_bookmark` (`user_id`, `post_id`),
-    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
-    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`)
-) COMMENT '북마크'
-ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-```
-
-### 11. 채팅 메시지
+### 9. 채팅 메시지
 
 ```sql
 -- 스터디 그룹 내 실시간 채팅 메시지
@@ -366,7 +337,23 @@ CREATE TABLE `chat_message`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 12. 채팅 읽음 상태
+### 10. 북마크
+
+```sql
+-- 관심 스터디 저장 내역
+CREATE TABLE `bookmark`
+(
+    `bookmark_id` INT PRIMARY KEY AUTO_INCREMENT,       -- 북마크 ID
+    `user_id`     INT NOT NULL,                         -- 회원 ID (FK)
+    `post_id`     INT NOT NULL,                         -- 공고 ID (FK)
+    UNIQUE KEY `UQ_user_bookmark` (`user_id`, `post_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+    FOREIGN KEY (`post_id`) REFERENCES `study_post` (`post_id`)
+) COMMENT '북마크'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 11. 채팅 읽음 상태
 
 ```sql
 -- 메시지별 사용자 읽음 여부 확인
@@ -383,7 +370,7 @@ CREATE TABLE `chat_read_status`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 13. 동료 평가
+### 12. 동료 평가
 
 ```sql
 -- 스터디 종료 후 팀원 상호 평가
@@ -410,7 +397,7 @@ CREATE TABLE `peer_review`
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
-### 14. 사용자 신고
+### 13. 사용자 신고
 
 ```sql
 -- 악성 사용자 및 게시글 신고 내역
@@ -430,6 +417,19 @@ CREATE TABLE `user_report`
     FOREIGN KEY (`target_id`) REFERENCES `user` (`user_id`),
     FOREIGN KEY (`target_post_id`) REFERENCES `study_post` (`post_id`)
 ) COMMENT '사용자 신고'
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+```
+
+### 14. 블랙리스트
+
+```sql
+-- 악성 사용자 관리를 위한 블랙리스트
+CREATE TABLE `black_list`
+(
+    `email`      VARCHAR(100) PRIMARY KEY,          -- 블랙리스트 이메일 (PK)
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 등록 일시
+    `reason`     TEXT NULL                          -- 등록 사유
+) COMMENT '블랙리스트 관리'
 ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ```
 
