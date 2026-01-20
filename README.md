@@ -1511,7 +1511,7 @@ CALL deleteBookmarkProc(1, 5);
 >     state = 'ACCEPT' -- 또는 'REJECT'
 > WHERE report_id = 1; -- 예시 ID
 > ```
-> ![신고사항 조회](./이다윗/ADMIN_001/1-2%20신고사항%20처리상태%20업데이트.png) 
+> ![신고사항 조회](./이다윗/ADMIN_001/1-3%20신고사항%20처리상태%20업데이트.png) 
 > </details>
 
 </details>
@@ -1576,6 +1576,8 @@ CALL deleteBookmarkProc(1, 5);
 > 
 > DELIMITER ;
 > ```
+> ![신고 사항 처리](./이다윗/ADMIN_002/1-2-1.%20유저_리포트_이전.png) 
+> ![신고 사항 처리](./이다윗/ADMIN_002/1-1-1.%20유저_리포트_이후.png) 
 > </details>
 
 > <details> 
@@ -1605,6 +1607,10 @@ CALL deleteBookmarkProc(1, 5);
 > 
 > DELIMITER ;
 > ```
+> ![신고 사항 처리](./이다윗/ADMIN_002/3-1.%20스터디%20멤버_이전.png)
+> ![신고 사항 처리](./이다윗/ADMIN_002/3-2.%20스터디%20멤버_이후.png)
+> ![신고 사항 처리](./이다윗/ADMIN_002/2-1.%20스터디%20포스트_이전.png)
+> ![신고 사항 처리](./이다윗/ADMIN_002/2-2.%20스터디%20포스트_이후.png)
 > </details>
 
 </details>
@@ -1637,6 +1643,8 @@ CALL deleteBookmarkProc(1, 5);
 > 
 > DELIMITER ;
 > ```
+> ![신고 사항 처리](./이다윗/ADMIN_002/4-1.%20유저_이전.png)
+> ![신고 사항 처리](./이다윗/ADMIN_002/4-2.%20유저_이후.png) 
 > </details>
 
 > <details> 
@@ -1667,6 +1675,10 @@ CALL deleteBookmarkProc(1, 5);
 > 
 > DELIMITER ;
 > ```
+> ![신고 사항 처리](./이다윗/ADMIN_002/4-1.%20유저_이전.png)
+> ![신고 사항 처리](./이다윗/ADMIN_002/4-2.%20유저_이후.png) 
+> ![신고 사항 처리](./이다윗/ADMIN_003/5-1.%20블랙리스트_이전.png)
+> ![신고 사항 처리](./이다윗/ADMIN_003/5-2.%20블랙리스트_이후.png) 
 > </details>
 
 > <details> 
@@ -1687,6 +1699,7 @@ CALL deleteBookmarkProc(1, 5);
 >     END IF;
 > END //
 > ```
+> ![신고 사항 처리](./이다윗/ADMIN_003/6.%20차단된%20블랙리스트.png) 
 > </details>
 
 </details>
@@ -1716,6 +1729,7 @@ END //
 
 DELIMITER ;
 ```
+![신고 사항 처리](./이다윗/ADMIN_004/7.%20시스템%20통계%20대시보드.png) 
 </details>
 
 ### 📌 아키텍처
