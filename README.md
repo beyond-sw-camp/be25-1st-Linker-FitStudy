@@ -220,7 +220,7 @@ CREATE TABLE `user`
     `region_id`            INT NULL,                        -- 활동 지역 ID (FK)
     `completed_studies`    INT NOT NULL DEFAULT 0,          -- 스터디완수 횟수
     `penalty_count`        INT NOT NULL DEFAULT 0,          -- 패널티 횟수
-    `reliability_score`    DECIMAL(5, 2) NOT NULL DEFAULT 0.00, -- 신뢰지수
+    `reliability_score`    DECIMAL(2,1) NOT NULL DEFAULT 0.0, -- 신뢰지수
     `status`               ENUM('ACTIVE','SUSPENDED','WITHDRAWN') NOT NULL DEFAULT 'ACTIVE', -- 회원상태
     `last_nickname_update` DATETIME NULL,                   -- 마지막 닉네임 변경일
     `created_at`           DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 가입일시
@@ -247,7 +247,7 @@ CREATE TABLE `study_post`
     `view_count`        INT NOT NULL DEFAULT 0,             -- 조회수
     `way`               ENUM('ONLINE','OFFLINE','BOTH') NOT NULL, -- 진행 방식
     `region_id`         INT NULL,                           -- 활동 지역 ID (FK)
-    `min_reliability`   DECIMAL(5,2) NULL,                  -- 최소 지원 신뢰 지수
+    `min_reliability`   DECIMAL(2,1) NULL,                  -- 최소 지원 신뢰 지수
     `post_status`       ENUM('RECRUITING','IN_PROGRESS','COMPLETED','CANCELED') NOT NULL DEFAULT 'RECRUITING', -- 모집상태
     `predict_finish_at` DATETIME NULL,                      -- 예상 종료 일시
     `start_at`          DATETIME NULL,                      -- 스터디 시작일시
