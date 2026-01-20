@@ -994,7 +994,7 @@ CALL searchStudies(NULL,NULL,'서울',NULL,'RECRUITING');
 ```
 
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies.png?raw=true)
-
+</br>
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_011/searchStudies%20result.png?raw=true)
 
 
