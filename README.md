@@ -43,18 +43,21 @@
   <img src="https://capsule-render.vercel.app/api?type=soft&color=auto&height=80&section=footer&text=Team%20Linker&fontSize=40&fontColor=ffffff&animation=fadeIn" />
 </p>
 
-| <img src="./image/zootopia_nibbles.png" width="150"><br>**이다윗** | <img src="김다솜/profileK.png" width="150"><br>**김다솜** | <img src="image/member_leeaeeun.png" width="150"><br>**이애은** |
+<div align="center">
+
+| <img src="./image/zootopia_nibbles.png" width="130"><br>**이다윗** | <img src="./김다솜/profileK.png" width="130"><br>**김다솜** | <img src="./image/member_leeaeeun.png" width="130"><br>**이애은** |
 | :---: | :---: | :---: |
 | **팀장 / 운영 및 제재 관리** | **팀원 / 상호작용 및 커뮤니케이션** | **팀원 / 스터디 탐색 및 조회** |
-| <a href="https://github.com/Dawit-lee"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/Myang09"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/nueeaeel"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> |
+| <a href="https://github.com/Dawit-lee"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/Myang09"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/nueeaeel"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> |
 
 <br>
 
-| <img src="./image/zootopia_rat.png" width="150"><br>**윤정윤** | <img src="image/member_leeyongho.jpg" width="150"><br>**이용호** | <img src="박재하/profile_J.jpg" width="150"><br>**박재하** |
+| <img src="./image/zootopia_rat.png" width="130"><br>**윤정윤** | <img src="./image/member_leeyongho.jpg" width="130"><br>**이용호** | <img src="./박재하/profile_J.jpg" width="130"><br>**박재하** |
 | :---: | :---: | :---: |
-| **팀원 / 마이페이지 및 개인화** | **팀원 /  회원 기초 및 인증** | **팀원 / 스터디 관리 및 리더 기능** |
-| <a href="https://github.com/penep0"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="[깃허브 주소]"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/horolo1234"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white" /></a> |
----
+| **팀원 / 서버 구축 및 북마크 기능** | **팀원 / 회원 기초 및 인증** | **팀원 / 스터디 관리 및 리더 기능** |
+| <a href="https://github.com/penep0"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="[깃허브 주소]"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/horolo1234"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> |
+
+</div>
 
 ## 💡 **배경 및 필요성**
 
