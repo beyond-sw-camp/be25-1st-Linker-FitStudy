@@ -792,19 +792,114 @@ VALUES
 
 </details>
 
-### 👤 2. 김다솜
+### 👤 2. 상호작용 및 커뮤니케이션 (Interaction) 
 <details>
-<summary>1-1. 회원가입</summary>
+<summary>2-1. 회원 신고</summary>
+</details>
+
+<details>
+<summary>2-2. 게시글 신고</summary>
+</details>
+
+<details>
+<summary>2-3. 신뢰점수 계산 후 유저 테이블 반영</summary>
 
 ```sql
+CREATE TRIGGER trg_update_reliability_score
+AFTER INSERT ON peer_review
+FOR EACH ROW
+BEGIN
+    DECLARE avg_score DECIMAL(2,1);
+
+    SELECT ROUND(
+        AVG(
+            (contribution_score
+           + communication_score
+           + time_compliance_score
+           + diligence_score) / 4.0
+        ),1)
+    INTO avg_score
+    FROM peer_review
+    WHERE reviewee_id = NEW.reviewee_id;
+
+    UPDATE user
+    SET reliability_score = avg_score
+    WHERE user_id = NEW.reviewee_id;
+END$$
+
+DELIMITER ;
+```
+</details> 
+
+
+<details>
+<summary>2-4. 스터디 미완수 시 평가 불가능 </summary>
+
+``` sql
+DELIMITER $$
+  
+CREATE TRIGGER trg_block_review_if_not_completed
+BEFORE INSERT ON peer_review
+FOR EACH ROW
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM study_post
+        WHERE post_id = NEW.post_id
+          AND post_status = 'COMPLETED'
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = '스터디가 완료된 후에만 평가할 수 있습니다.';
+    END IF;
+END$$
 
 ```
+</details>
 
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+<details>
+<summary>2-5. 채팅 읽은 사람 수 카운트</summary>
 
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+```sql
+SELECT COUNT(*) AS count_member
+FROM chat_read_status
+WHERE message_id = 1 AND is_read = 1;
+```
+</details>
+<details>
+<summary> 2-6. 채팅 전체 조회 </summary>
 
 
+```sql
+DELIMITER $$
+
+CREATE OR REPLACE PROCEDURE get_chat_messages (
+    IN p_post_id INT
+)
+BEGIN
+    SELECT
+        cm.message_id,
+        cm.sender_id,
+        u.nickname,
+        cm.content,
+        cm.sent_at,
+
+        (
+            SELECT COUNT(*)
+            FROM chat_read_status crs
+            WHERE crs.message_id = cm.message_id
+              AND crs.is_read = 1 
+        ) AS read_count
+
+    FROM chat_message cm
+    JOIN user u
+        ON cm.sender_id = u.user_id 
+    WHERE cm.post_id = p_post_id
+    ORDER BY cm.sent_at DESC;
+END$$
+
+DELIMITER ;
+
+```
 </details>
 
 ### 👤 3. 이애은
