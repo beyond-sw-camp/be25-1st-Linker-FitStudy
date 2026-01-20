@@ -1,6 +1,6 @@
 # be25-1st-5team-project
 <p align="center">
-  <img src="logo.png" width="400" alt="Project Logo" />
+  <img src="image/logo.png" width="400" alt="Project Logo" />
 </p>
 
 <h1 align="center">📛 <strong>[FIT-STUDY]</strong></h1>
