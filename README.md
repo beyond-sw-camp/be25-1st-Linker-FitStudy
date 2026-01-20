@@ -131,7 +131,10 @@
 ## 📋 요구사항 명세
 
 ### 🧾 요구사항 정의서
-<img src="./image/requirements.pdf" width="1000" alt="req_preview" />
+<p align="center">
+  <img src="./image/req_preview.png" width="1000" alt="요구사항 정의서 미리보기" />
+</p>
+
 - [📂 요구사항 정의서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)
 
 ### ✅ 기능 요구사항
