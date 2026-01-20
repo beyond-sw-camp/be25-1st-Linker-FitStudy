@@ -821,11 +821,9 @@ CALL signupUser('pw1234', '김세비', 'F', '2000-01-01', '010-9823-8572', 'sebi
 
 SELECT * FROM user WHERE email = 'sebi@gmail.com';
 ```
-평가 전
 ![image](이용호/USER_01/signupUser.png)
-<br>
 
-- 오류
+- 오류<br>
 ![image](이용호/USER_01/Error.png)
 
 <br>
