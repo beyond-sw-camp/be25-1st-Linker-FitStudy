@@ -1198,13 +1198,14 @@ BEGIN
 END$$
 DELIMITER ;
 ```
+
 - 멤버가 협업 완료 변경 시도 시 변경 안됨
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_008/%EB%A9%A4%EB%B2%84%EA%B0%80%20%EA%B3%B5%EA%B3%A0%20%EC%83%81%ED%83%9C%20%EB%B3%80%EA%B2%BD%EC%8B%9C%20%EB%B3%80%EA%B2%BD%EC%95%88%EB%90%A8.png?raw=true)
 
 - 리더가 협업 완료 변경 시 변경됨
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_008/%EB%A6%AC%EB%8D%94%EA%B0%80%20%EA%B3%B5%EA%B3%A0%20%EC%83%81%ED%83%9C%20%EB%B3%80%EA%B2%BD%EC%8B%9C%20%EB%B3%80%EA%B2%BD%EB%90%A8.png?raw=true)
 
--스터디 완료시 ACCEPTED 였던 멤버만 completed_studies 1 증가
+- 스터디 완료시 ACCEPTED 였던 멤버만 completed_studies 1 증가
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_008/%EC%8A%A4%ED%84%B0%EB%94%94%20%EC%99%84%EB%A3%8C%EC%8B%9C%20ACCEPTED%EB%90%9C%20%EB%A9%A4%EB%B2%84%EB%A7%8C%20completed_studies%EA%B0%80%201%20%EC%A6%9D%EA%B0%80.png?raw=true)
 
 
