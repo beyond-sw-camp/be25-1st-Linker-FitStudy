@@ -780,8 +780,8 @@ VALUES
 
 ---
 
-## 🧠 프로시저 실행 결과
-### 👤 1. 이다윗
+## 🧠 실행 결과
+### 👤 1. 이용호
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -811,7 +811,7 @@ VALUES
 
 </details>
 
-### 👤 3. 이애은은
+### 👤 3. 이애은
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -826,7 +826,7 @@ VALUES
 
 </details>
 
-### 👤 4. 윤정윤
+### 👤 4. 박재하
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -841,7 +841,20 @@ VALUES
 
 </details>
 
-### 👤 5. 이용호
+<details>
+<summary>1. 스터디 모집글 작성</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -856,7 +869,6 @@ VALUES
 
 </details>
 
-### 👤 6. 박재하
 <details>
 <summary>1-1. 회원가입</summary>
 
@@ -871,7 +883,118 @@ VALUES
 
 </details>
 
+<details>
+<summary>1-1. 회원가입</summary>
 
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+</details>
+
+### 👤 5. 윤정윤
+<details>
+<summary>1-1. 회원가입</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
+
+### 👤 6. 이다윗
+<details>
+<summary>1. 스터디 모집글 작성</summary>
+
+```sql
+
+```
+
+![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
+
+![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
+
+
+</details>
 
 ## 회고록
 
