@@ -129,7 +129,7 @@
 
 ---
 
-## 📋 요구사항 명세
+## 📋 요구사항 명세서
 
 ### 🧾 요구사항 정의서
 <p align="center">
@@ -157,7 +157,7 @@
 <img src="./image/ERD.png" width="1000" alt="ERD image" /></br>
 - [📌 ERD 구조도 링크](https://www.erdcloud.com/d/ZdriHsJtzb2qyHtfq)
 
-### 📋 테이블 명세
+### 📋 테이블 명세서
 - [📂 테이블 명세서 링크](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
 
 ### 📌 Schema DDL
