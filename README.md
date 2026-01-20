@@ -1285,7 +1285,7 @@ DELIMITER ;
 
 CALL studyStatusProc(10, 'PENDING');
 ```
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_013_result.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_013/USER_013_result.png?raw=true)
 
 </details>
 
@@ -1352,7 +1352,7 @@ DELIMITER ;
 
 CALL showBookmarkProc(1);
 ```
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_016_result.png?raw=true)
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_016/USER_016_result.png?raw=true)
 
 </details>
 
