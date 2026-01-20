@@ -1450,7 +1450,6 @@ CALL deleteBookmarkProc(1, 5);
 
 </details>
 
-### 👤 6. 이다윗
 ### 👤 6. 운영 및 제재 관리
 
 <details>
@@ -1523,13 +1522,15 @@ CALL deleteBookmarkProc(1, 5);
 
 > <details> 
 > <summary>2-1. [프로시저] 신고 처리</summary>
+> <br>
+>
 > ```sql
 > -- ADMIN_002: 신고 사항 처리
-
+> 
 > -- [프로시저] 신고 처리 (proc_process_report)
-
+> 
 > DELIMITER $$
-
+> 
 > CREATE PROCEDURE proc_process_report(
 >     IN p_report_id INT,
 >     IN p_admin_decision VARCHAR(20) -- 'ACCEPT' 또는 'REJECT'
@@ -1537,16 +1538,16 @@ CALL deleteBookmarkProc(1, 5);
 > BEGIN
 >     DECLARE v_target_user_id INT;
 >     DECLARE v_target_post_id INT;
-    
+>     
 >     -- 1. 신고 대상 정보 가져오기
-    
+>     
 >     SELECT target_id, target_post_id 
 >     INTO v_target_user_id, v_target_post_id
 >     FROM user_report
 >     WHERE report_id = p_report_id;
-
+> 
 >     -- 2. 신고 상태 업데이트 (처리중 -> 승인/거절)
-    
+>    
 >     UPDATE user_report
 >     SET state = p_admin_decision
 >     WHERE report_id = p_report_id;
@@ -1579,6 +1580,8 @@ CALL deleteBookmarkProc(1, 5);
 
 > <details> 
 > <summary>2-2. [트리거] 공고 취소 시 멤버 자동 탈퇴</summary>
+> <br>
+>
 > ```sql
 >   DELIMITER $$
 > 
@@ -1613,6 +1616,8 @@ CALL deleteBookmarkProc(1, 5);
 > <details>
 > <summary>3-1. [트리거] 신고 승인 시 패널티 증가</summary>
 > ```sql
+> <br>
+>	
 >   DELIMITER //
 > 
 > CREATE TRIGGER trg_increase_penalty_on_report_accept
@@ -1637,6 +1642,8 @@ CALL deleteBookmarkProc(1, 5);
 > <details> 
 > <summary>3-2. [트리거] 3회 누적 시 강제 탈퇴 및 블랙리스트</summary>
 > ```sql
+> <br>
+>
 >   DELIMITER //
 > 
 > CREATE TRIGGER trg_enforce_blacklist
@@ -1664,6 +1671,8 @@ CALL deleteBookmarkProc(1, 5);
 > <details> 
 > <summary>3-3. [트리거] 블랙리스트에 등록된 이메일로 가입 시도 시 차단</summary>
 > ```sql
+> <br>
+>
 >   DELIMITER //
 > 
 > CREATE TRIGGER trg_prevent_signup
