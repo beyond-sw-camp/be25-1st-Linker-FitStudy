@@ -1451,18 +1451,259 @@ CALL deleteBookmarkProc(1, 5);
 </details>
 
 ### 👤 6. 이다윗
+### 👤 6. 운영 및 제재 관리
+
 <details>
-<summary>1. 스터디 모집글 작성</summary>
+<summary>1. 신고사항 조회</summary>
+<br>
 
+> <details>
+> <summary>1-1. 신고사항 조회</summary>
+> <br>
+>
+> ```sql
+> SELECT 
+>     r.report_id,
+>     r.reason_type,                      -- 신고 사유
+>     r.reason_detail,                    -- 상세 내용
+>     r.state,                            -- 처리 상태
+>     r.created_at,                       -- 신고 일시
+>     reporter.nickname AS reporter_name, -- 신고자 닉네임
+>     target.nickname AS target_name,     -- 피신고자 닉네임
+>     r.target_post_id                    -- 신고 대상 공고 ID
+> FROM user_report r
+> JOIN user reporter ON r.reporter_id = reporter.user_id
+> JOIN user target ON r.target_id = target.user_id
+> ORDER BY r.created_at DESC;
+> ```
+>
+> ![신고사항 조회](./이다윗/ADMIN_001/1-1%20신고사항%20조회.png)
+> </details>
+
+> <details> 
+> <summary>1-2. 상태별 필터링 조회</summary>
+> <br>
+>
+> ```sql
+> SELECT 
+>    r.report_id,
+>    r.reason_type,
+>    r.state,
+>    r.created_at,
+>    reporter.nickname AS reporter_name,
+>    target.nickname AS target_name
+> FROM user_report r
+> JOIN user reporter ON r.reporter_id = reporter.user_id
+> JOIN user target ON r.target_id = target.user_id
+> WHERE r.state = 'PROCESSING' -- 'ACCEPT', 'REJECT'로 변경 가능
+> ORDER BY r.created_at DESC;
+> ```
+> ![신고사항 조회](./이다윗/ADMIN_001/1-2%20신고사항%20필터링%20조회.png) 
+> </details>
+
+> <details> 
+> <summary>1-3. 신고 처리 상태 변경</summary>
+> <br>
+>
+> ```sql
+> -- :report_id 에는 처리할 report_id 값을 넣음
+> UPDATE user_report
+> SET 
+>     state = 'ACCEPT' -- 또는 'REJECT'
+> WHERE report_id = 1; -- 예시 ID
+> ```
+> ![신고사항 조회](./이다윗/ADMIN_001/1-2%20신고사항%20처리상태%20업데이트.png) 
+> </details>
+
+</details>
+
+<details>
+<summary>2. 신고 사항 처리</summary>
+<br>
+
+> <details> 
+> <summary>2-1. [프로시저] 신고 처리</summary>
+> ```sql
+> -- ADMIN_002: 신고 사항 처리
+
+> -- [프로시저] 신고 처리 (proc_process_report)
+
+> DELIMITER $$
+
+> CREATE PROCEDURE proc_process_report(
+>     IN p_report_id INT,
+>     IN p_admin_decision VARCHAR(20) -- 'ACCEPT' 또는 'REJECT'
+> )
+> BEGIN
+>     DECLARE v_target_user_id INT;
+>     DECLARE v_target_post_id INT;
+    
+>     -- 1. 신고 대상 정보 가져오기
+    
+>     SELECT target_id, target_post_id 
+>     INTO v_target_user_id, v_target_post_id
+>     FROM user_report
+>     WHERE report_id = p_report_id;
+
+>     -- 2. 신고 상태 업데이트 (처리중 -> 승인/거절)
+    
+>     UPDATE user_report
+>     SET state = p_admin_decision
+>     WHERE report_id = p_report_id;
+> 
+>     -- 3. 신고가 '승인(ACCEPT)'된 경우 후속 처리
+>     
+>     IF p_admin_decision = 'ACCEPT' THEN
+>         
+>         -- 3-1. 피신고자(target_id)의 패널티 횟수 +1 증가
+>         
+>         UPDATE user
+>         SET penalty_count = penalty_count + 1
+>         WHERE user_id = v_target_user_id;
+> 
+>         -- 3-2. 허위 공고 신고일 경우(target_post_id가 존재함), 공고 상태를 'CANCELLED'로 변경
+>   
+>         IF v_target_post_id IS NOT NULL THEN
+>             UPDATE study_post
+>             SET post_status = 'CANCELED'
+>             WHERE post_id = v_target_post_id;
+>         END IF;
+>         
+>     END IF;
+> 
+> END $$
+> 
+> DELIMITER ;
+> ```
+> </details>
+
+> <details> 
+> <summary>2-2. [트리거] 공고 취소 시 멤버 자동 탈퇴</summary>
+> ```sql
+>   DELIMITER $$
+> 
+> CREATE TRIGGER trg_auto_withdraw_members
+> AFTER UPDATE ON study_post
+> FOR EACH ROW
+> BEGIN
+>     -- 공고 상태가 'CANCELED'로 변경되었을 때만 동작
+>     
+>     IF NEW.post_status = 'CANCELED' AND OLD.post_status != 'CANCELED' THEN
+>         
+>         -- 해당 공고에 참여 중인 멤버들의 상태를 'CANCELED' 로 변경
+>        
+>         UPDATE study_member
+>         SET status = 'CANCELED'
+>         WHERE post_id = NEW.post_id
+>           AND status IN ('ACCEPTED', 'PENDING'); -- 이미 나간 사람 제외
+>           
+>     END IF;
+> END $$
+> 
+> DELIMITER ;
+> ```
+> </details>
+
+</details>
+
+<details>
+<summary>3. 유저 제재</summary>
+<br>
+  
+> <details>
+> <summary>3-1. [트리거] 신고 승인 시 패널티 증가</summary>
+> ```sql
+>   DELIMITER //
+> 
+> CREATE TRIGGER trg_increase_penalty_on_report_accept
+> AFTER UPDATE ON user_report
+> FOR EACH ROW
+> BEGIN
+>     -- 신고 상태가 'ACCEPT'(승인)로 변경되었을 때만 실행
+>     IF NEW.state = 'ACCEPT' AND OLD.state != 'ACCEPT' THEN
+>         
+>         -- 피신고자(target_id)의 패널티 횟수 +1
+>         UPDATE user
+>         SET penalty_count = penalty_count + 1
+>         WHERE user_id = NEW.target_id;
+>         
+>     END IF;
+> END //
+> 
+> DELIMITER ;
+> ```
+> </details>
+
+> <details> 
+> <summary>3-2. [트리거] 3회 누적 시 강제 탈퇴 및 블랙리스트</summary>
+> ```sql
+>   DELIMITER //
+> 
+> CREATE TRIGGER trg_enforce_blacklist
+> BEFORE UPDATE ON user
+> FOR EACH ROW
+> BEGIN
+>     -- 패널티가 3회 이상이 되는 순간 (기존엔 3 미만이었는데, 이번 업데이트로 3 이상이 됨)
+>     IF NEW.penalty_count >= 3 THEN
+>         
+>         -- 1. 회원 상태를 'WITHDRAWN'(탈퇴)으로 변경
+>         SET NEW.status = 'WITHDRAWN';
+>         
+>         -- 2. 블랙리스트 테이블에 이메일 등록 (중복 방지를 위해 INSERT IGNORE 사용 권장)
+>         -- reason에는 자동 등록 사유 기입
+>         INSERT IGNORE INTO black_list (email, reason, created_at)
+>         VALUES (OLD.email, '패널티 누적 3회 이상으로 인한 자동 차단', NOW());
+>         
+>     END IF;
+> END //
+> 
+> DELIMITER ;
+> ```
+> </details>
+
+> <details> 
+> <summary>3-3. [트리거] 블랙리스트에 등록된 이메일로 가입 시도 시 차단</summary>
+> ```sql
+>   DELIMITER //
+> 
+> CREATE TRIGGER trg_prevent_signup
+> BEFORE INSERT ON user
+> FOR EACH ROW
+> BEGIN
+>     -- 만약 가입하려는 이메일이 블랙리스트 테이블에 존재한다면 에러 발생
+>     IF EXISTS (SELECT 1 FROM black_list WHERE email = NEW.email) THEN
+>         SIGNAL SQLSTATE '45000'
+>         SET MESSAGE_TEXT = '차단된 계정(블랙리스트)입니다. 가입이 불가능합니다.';
+>     END IF;
+> END //
+> ```
+> </details>
+
+</details>
+
+<details>
+<summary>4. 시스템 통계 대시보드 (신규 공고 수, 신규 참여 수)</summary>
 ```sql
+DELIMITER //
 
+CREATE PROCEDURE proc_get_statistics(
+    IN p_start_date DATETIME,
+    IN p_end_date DATETIME
+)
+BEGIN
+    SELECT 
+        (SELECT COUNT(*) 
+         FROM study_post 
+         WHERE created_at BETWEEN p_start_date AND p_end_date) AS '신규 스터디 수',
+         
+        (SELECT COUNT(*) 
+         FROM study_member 
+         WHERE joined_at BETWEEN p_start_date AND p_end_date
+           AND status = 'ACCEPTED') AS '신규 참여 인원';
+END //
+
+DELIMITER ;
 ```
-
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
-
-![image](https://github.com/user-attachments/assets/6cdbac9e-3874-4734-bd78-97c28114ce1a)
-
-
 </details>
 
 ### 📌 아키텍처
