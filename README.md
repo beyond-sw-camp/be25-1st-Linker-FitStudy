@@ -1070,9 +1070,6 @@ CALL sp_update_member_status(2, 3, 6, 'REJECTED');
 -- 멤버 5가 유저 6을 rejeced함 실패 
 CALL sp_update_member_status(2, 5, 6, 'REJECTED');
 ```
-- 스터디 공고 상태확인
-![image](https://github.com/user-attachments/assets/52e81b9c-1b90-476a-8cc7-80646a1d90a7)
-
 - 멤버면 ACCEPTED로 변경 불가능함
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EB%B0%95%EC%9E%AC%ED%95%98/LEADER_005/%EB%A9%A4%EB%B2%84%EB%A9%B4%20ACCEPTED%20%EB%A1%9C%20%EB%AA%BB%EB%B0%94%EA%BF%88.png?raw=true)
 
