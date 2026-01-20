@@ -1,8 +1,3 @@
-<img width="1115" height="170" alt="image" src="https://github.com/user-attachments/assets/01579198-d70f-406a-a1d9-0471be51a045" /># be25-1st-Linker-FitStudy
-<p align="center">
-  <img src="./image/logo.png" width="400" alt="Project Logo" />
-</p>
-
 <h1 align="center">📛 <strong>[FIT-STUDY]</strong></h1>
 <p align="center"><em>나에게 딱 맞는(Fit) 스터디</em></p>
 
@@ -1357,7 +1352,7 @@ CALL showBookmarkProc(1);
 </details>
 
 <details>
-<summary>5-5. 북마크 조회</summary>
+<summary>5-5. 북마크 해제</summary>
 
 ```sql
 -- 로그인된 아이디와 게시물 아이디를 통해 북마크 해제
