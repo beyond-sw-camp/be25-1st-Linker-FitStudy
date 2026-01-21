@@ -1019,7 +1019,7 @@ BEGIN
     SET region_id = (SELECT region_id FROM common_region WHERE city = p_city_name)
     WHERE user_id = p_user_id;
     
-    -- 2) 닉네임 변경 제한 (p_new_nickname이 NULL이 아니면 변경 시도)
+    -- 닉네임 변경 제한 (p_new_nickname이 NULL이 아니면 변경 시도)
     IF p_new_nickname IS NOT NULL THEN
 
         -- 닉네임 중복 체크
