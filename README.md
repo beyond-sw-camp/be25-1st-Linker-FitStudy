@@ -1013,7 +1013,6 @@ CREATE OR REPLACE PROCEDURE updateUserProfile(
     IN p_new_nickname   VARCHAR(50)
 )
 BEGIN
-	 DECLARE v_region_id INT;
     DECLARE v_last_nick_changed_at DATE;
 
     UPDATE `user`
@@ -1171,7 +1170,6 @@ CREATE OR REPLACE PROCEDURE withdrawn(
 )
 BEGIN
 	 DECLARE is_participating TINYINT;
-	 DECLARE withdrawn_user_id INT;
 	 
 	 SELECT
         IF (
