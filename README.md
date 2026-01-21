@@ -52,7 +52,7 @@
 
 <br>
 
-| <img src="./image/zootopia_rat.png" width="150"><br>**윤정윤** | <img src="./image/member_leeyongho.jpg" width="150"><br>**이용호** | <img src="./박재하/profile_J.jpg" width="150"><br>**박재하** |
+| <img src="./image/zootopia_rat.png" width="150"><br>**윤정윤** | <img src="./image/member_leeyongho.jpg" width="150" height="150"><br>**이용호** | <img src="./박재하/profile_J.jpg" width="150"><br>**박재하** |
 | :---: | :---: | :---: |
 | **팀원** | **팀원** | **팀원** |
 | <a href="https://github.com/penep0"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/leeyh3050"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> | <a href="https://github.com/horolo1234"><img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white" /></a> |
