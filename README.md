@@ -164,7 +164,7 @@
 
 ### 📋 테이블 명세서
 <img src="./image/Table_Specification.png" width="1000" alt="Table Specification image" /></br>
-- [📂 테이블 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=724605003#gid=724605003)
+- [📂 테이블 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=1729984830#gid=1729984830)
 
 ### 📌 Schema DDL
 <details>
