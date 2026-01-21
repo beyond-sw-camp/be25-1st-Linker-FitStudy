@@ -1746,7 +1746,7 @@ DELIMITER ;
 </details>
 
 <details>
-<summary>4-5, 4-6. 참여 요청 관리 (승낙/거절)</summary>
+<summary>4-5. 참여 요청 관리 (승낙/거절)</summary>
 
 ```sql
 -- ===================== LEADER_005, LEADER_006 =====================
@@ -1807,7 +1807,7 @@ CALL sp_update_member_status(2, 5, 6, 'REJECTED');
 </details>
 
 <details>
-<summary>4-7. 팀장 위임</summary>
+<summary>4-6. 팀장 위임</summary>
 
 ```sql
 -- ===================== LEADER_007 =====================
@@ -1891,7 +1891,7 @@ CALL change_withdraw_leader(2, 3, 4);
 </details>
 
 <details>
-<summary>4-8. [트리거] 스터디 완료</summary>
+<summary>4-7. [트리거] 스터디 완료</summary>
 
 ```sql
 -- ===================== LEADER_008 =====================
@@ -1932,7 +1932,7 @@ DELIMITER ;
 </details>
 
 <details>
-<summary>4-9. 스터디 참가 신청</summary>
+<summary>4-8. 스터디 참가 신청</summary>
 
 ```sql
 -- ===================== MEMBER_001 =====================
