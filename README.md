@@ -138,7 +138,7 @@
 
 ### 🧾 요구사항 명세서
 <p align="center">
-  <img src="./image/requirements.jpg" width="175%" alt="요구사항 명세서" />
+  <img src="./image/requirements.png" width="175%" alt="요구사항 명세서" />
 </p>
 
 - [📂 요구사항 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
