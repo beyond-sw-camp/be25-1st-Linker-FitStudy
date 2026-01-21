@@ -20,7 +20,6 @@
 
 - [👥 팀원 소개](#-팀원-소개)
 - [💡 배경 및 필요성](#-배경-및-필요성)
-- [🔧 주요 기능](#-주요-기능)
 - [🎯 서비스 목표](#-서비스-목표)
 - [👤 핵심 가치 및 전략](#-핵심-가치-및-전략)
 - [🔧 주요 기능](#-주요-기능)
@@ -137,11 +136,10 @@
 ## 📋 요구사항 명세서
 
 ### 🧾 요구사항 명세서
-<p align="center">
-  <img src="./image/requirements.png" width="175%" alt="요구사항 명세서" />
-</p>
+<img src="./image/requirements.png" width="175%" alt="요구사항 명세서" />
 
-- [📂 요구사항 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?pli=1&gid=594161354#gid=594161354)</br>
+- [📂 요구사항 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=594161354#gid=594161354)
+
 
 ### ✅ 중점 요구사항
 - 사용자 계정 생성, 로그인, 정보 수정 및 탈퇴 (블랙리스트 대조 포함)
@@ -163,7 +161,7 @@
 - [📌 ERD 구조도 (링크)](https://www.erdcloud.com/d/ZdriHsJtzb2qyHtfq)
 
 ### 📋 테이블 명세서
-<img src="./image/Table_Specification.png" width="1000" alt="Table Specification image" /></br>
+<img src="./image/TableSpecification.png" width="1000" alt="Table Specification image" /></br>
 - [📂 테이블 명세서 (링크)](https://docs.google.com/spreadsheets/d/1Q1jzi_nl8RFUq_z4TsBLuJ0TAfOchFgY/edit?gid=1729984830#gid=1729984830)
 
 ### 📌 Schema DDL
@@ -1508,7 +1506,7 @@ CALL searchStudies(NULL,NULL,'서울',NULL,'RECRUITING');
 </details>
 
 <details>
-<summary>3-3. 회원가입</summary>
+<summary>3-3. 스터디 상세 조회 변경경</summary>
 
 ```sql
 DELIMITER $$
@@ -1539,6 +1537,57 @@ CALL viewStudy(1); -- 게시물 아이디 입력
 ![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9D%B4%EC%95%A0%EC%9D%80/USER_012/viewStudy.png?raw=true)
 
 
+</details>
+
+<details>
+<summary>3-4. 유저 스터디 참여 상태태 조회</summary>
+
+```sql
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE studyStatusProc(
+    IN p_userId INT,
+    IN p_studyStatus VARCHAR(20)
+)
+BEGIN
+    SELECT
+        sp.post_id,
+        sp.title,
+        sm.status AS '상태',
+        sm.user_id
+    FROM study_member sm
+             JOIN study_post sp ON sp.post_id = sm.post_id
+    WHERE sm.user_id = p_userId
+      AND (
+        p_studyStatus IS NULL
+            OR sm.status = p_studyStatus
+        );
+END$$
+DELIMITER ;
+
+CALL studyStatusProc(10, 'PENDING');
+```
+![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_013/USER_013_result.png?raw=true)
+
+</details>
+
+<details>
+<summary>3-5. 거절된 스터디 내역 삭제</summary>
+
+```sql
+-- '거절됨' 스터디 내역 삭제
+DELIMITER $$
+CREATE OR REPLACE PROCEDURE deleteStudyRecordProc(
+    IN userId INT,
+    IN postId INT
+)
+BEGIN
+    DELETE FROM study_member
+    WHERE user_id = userId AND post_id = postId AND status = 'REJECTED';
+END$$
+DELIMITER ;
+
+CALL deleteStudyRecordProc(1, 3);
+```
 </details>
 
 ### 👑 4. 스터디 관리 및 리더 기능
@@ -1958,60 +2007,9 @@ VALUES (2, 4, 'MEMBER', 'PENDING');
 </details>
 
 
-### 🔖 5. 유저 스터디 현황 조회 및 북마크 관리
+### 🔖 5. 북마크 관리
 <details>
-<summary>5-1. 유저 스터디 참여 현황 조회</summary>
-
-```sql
-DELIMITER $$
-CREATE OR REPLACE PROCEDURE studyStatusProc(
-    IN p_userId INT,
-    IN p_studyStatus VARCHAR(20)
-)
-BEGIN
-    SELECT
-        sp.post_id,
-        sp.title,
-        sm.status AS '상태',
-        sm.user_id
-    FROM study_member sm
-             JOIN study_post sp ON sp.post_id = sm.post_id
-    WHERE sm.user_id = p_userId
-      AND (
-        p_studyStatus IS NULL
-            OR sm.status = p_studyStatus
-        );
-END$$
-DELIMITER ;
-
-CALL studyStatusProc(10, 'PENDING');
-```
-![image](https://github.com/beyond-sw-camp/be25-1st-Linker-FitStudy/blob/main/%EC%9C%A4%EC%A0%95%EC%9C%A4/USER_013/USER_013_result.png?raw=true)
-
-</details>
-
-<details>
-<summary>5-2. 거절된 스터디 내역 삭제</summary>
-
-```sql
--- '거절됨' 스터디 내역 삭제
-DELIMITER $$
-CREATE OR REPLACE PROCEDURE deleteStudyRecordProc(
-    IN userId INT,
-    IN postId INT
-)
-BEGIN
-    DELETE FROM study_member
-    WHERE user_id = userId AND post_id = postId AND status = 'REJECTED';
-END$$
-DELIMITER ;
-
-CALL deleteStudyRecordProc(1, 3);
-```
-</details>
-
-<details>
-<summary>5-3. 북마크 등록</summary>
+<summary>5-1. 북마크 등록</summary>
 
 ```sql
 -- 로그인된 아이디와 게시물 아이디를 통해 북마크 등록
@@ -2034,7 +2032,7 @@ CALL createBookmarkProc(1, 5);
 </details>
 
 <details>
-<summary>5-4. 북마크 조회</summary>
+<summary>5-2. 북마크 조회</summary>
 
 ```sql
 -- 로그인된 아이디를 통해 북마크 목록 조회
@@ -2058,7 +2056,7 @@ CALL showBookmarkProc(1);
 </details>
 
 <details>
-<summary>5-5. 북마크 해제</summary>
+<summary>5-3. 북마크 해제</summary>
 
 ```sql
 -- 로그인된 아이디와 게시물 아이디를 통해 북마크 해제
